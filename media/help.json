@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Jak zacząć",
+        "content": "Aby rozpocząć, kliknij przycisk 'Start'. Następnie podążaj za wskazuwką aby odnaleźć pierwszy kod QR."
+    },
+    {
+        "title": "Jak skanować kody QR",
+        "content": "Aby zeskanować kod QR, użyj aparatu w swoim telefonie. Jeśli to nie zadziała możesz użyć takiej aplikacji jak 'Skaner kodów QR'."
+    },
+    {
+        "title": "Co dalej",
+        "content": "Po zeskanowaniu kodu QR automatycznie zostaniesz przeniesiony do następnych pytań. Odpowiedz na nie, aby otrzymać kolejne wskazówki."
+    },
+    {
+        "title": "Ciekawostki",
+        "content": "W grze znajdziesz również ciekawostki związane z Ruchem Światło Życie. Czytaj je uważnie, przydadzą sie w kolejnych pytaniach."
+    },
+    {
+        "title": "Koniec gry",
+        "content": "Po odpowiedzeniu na wszystkie pytania dostaniesz ostatnią wskazówkę, która zaprowadzi Cię do skarbu. Powodzenia!"
+    }
+]

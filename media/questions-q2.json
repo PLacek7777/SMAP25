@@ -1,0 +1,37 @@
+[
+    {
+      "text": "Jak na imię miał papież Jan Paweł II?",
+      "answers": ["karol", "karol wojtyła"],
+      "tag": "question"
+    },
+    {
+      "text": "Gdzie urodził się papież Jan Paweł II?",
+      "answers": ["wadowice"],
+      "tag": "question"
+    },
+    {
+      "text": "Kto jest teraz papieżem?",
+      "answers": ["franciszek", "papież franciszek"],
+      "tag": "question"
+    },
+    {
+      "text": "Skąd Mojżesz wyprowadził naród wybrany?",
+      "answers": ["z egiptu", "egipt"],
+      "tag": "question"
+    },
+    {
+      "text": "Jak nazywała się matka Jana Chrzciciela?",
+      "answers": ["elżbieta"],
+      "tag": "question"
+    },
+    {
+        "text": "Jak nazywał się ojciec Jana Chrzciciela?",
+        "answers": ["zahariasz"],
+        "tag": "question"
+    },
+    {
+      "text": "Gdzie urodził się Jezus?",
+      "answers": ["betlejem"],
+      "tag": "question"
+    }
+]

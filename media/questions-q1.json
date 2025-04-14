@@ -1,0 +1,17 @@
+[
+  {
+    "text": "Ile jest przykazań kościelnych?",
+    "answers": ["5", "pięć"],
+    "tag": "question"
+  },
+  {
+    "text": "założycielem Oazy jest ks. Franciszek Blachnicki",
+    "answers": [],
+    "tag": "trivia"
+  },
+  {
+    "text": "Ile tablic zostało przekazanych Mojżeszowi na górze Synaj?",
+    "answers": ["2", "dwie"],
+    "tag": "question"
+  }
+]

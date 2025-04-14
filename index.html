@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SMAP 2025 Gra Terenowa</title>
+  <link rel="icon" href="media/foska-przemyska-100px.png">  
+  <link rel="stylesheet" href="index.css">
+</head>
+<body data-site-id="menu">
+    <a href="https://oaza.przemyska.pl/oazywakacyjne-zapisy/">
+        <img src="media/foska-przemyska-z-napisem-300px.png" id="foska" >
+    </a>
+  <div id="wrap">
+    <h1 id="punkt">🔍 Gra Terenowa</h1>
+    <p style="text-align:center;">Witaj! Przed Tobą seria pytań i zagadek, które poprowadzą Cię przez kolejne punkty trasy.</p>
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="set1.html">
+        <button>Start</button>
+      </a>  
+    </div>
+  </div>
+  <button id="helpButton" onclick="displayHelp()"><strong>Jak grać?</strong></button>
+
+  <div id="helpModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="document.getElementById('helpModal').style.display='none'">&times;</span>
+      <h2>Jak grać?</h2>
+      <ul id="helpList">
+      </ul>
+    </div>
+  </div>
+  
+  <script src="index.js"></script>
+</body>
+</html>

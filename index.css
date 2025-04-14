@@ -1,0 +1,100 @@
+body{
+  background-color: #ebebeb;
+  font-family: sans-serif;
+}
+
+#wrap {
+    max-width: 600px;
+    margin: 15px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  }
+  
+  #punkt {
+    color: #243547;
+    margin: auto;
+  }
+  
+  #question {
+    font-size: 18px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  #foska {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40% auto;
+  }
+  
+  input[type="text"] {
+    width: 90%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom   : 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #24d36d;
+    color: rgb(250, 255, 237);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #1b7540a8;
+  }
+  
+  #feedback {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  #helpButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #208bfd;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+  }
+
+  .modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.534);
+  }
+
+  .close {
+    float: right;
+    font-size: 30px;
+    cursor: pointer;
+    color: rgb(148, 2, 2);
+  }
