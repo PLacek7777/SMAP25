@@ -60,15 +60,19 @@ body{
   
   #helpButton {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 10px;
+    right: 10px;
+    height: 36px;
+    width: 36px;
     background-color: #208bfd;
-    color: white;
+    color: rgb(220, 247, 222);
     border: none;
-    padding: 12px 18px;
+    padding: 0px;
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    letter-spacing: -1px;
+    font-size: 20px;
   }
 
   .modal {
