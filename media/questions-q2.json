@@ -1,12 +1,12 @@
 [
     {
       "text": "Jak na imię miał papież Jan Paweł II?",
-      "answers": ["karol", "karol wojtyła"],
+      "answers": ["karol", "karol wojtyła", "karol józef wojtyła"],
       "tag": "question"
     },
     {
       "text": "Gdzie urodził się papież Jan Paweł II?",
-      "answers": ["wadowice"],
+      "answers": ["wadowice", "w wadowicach"],
       "tag": "question"
     },
     {
@@ -31,7 +31,7 @@
     },
     {
       "text": "Gdzie urodził się Jezus?",
-      "answers": ["betlejem"],
+      "answers": ["betlejem", "w betlejem"],
       "tag": "question"
     }
 ]
