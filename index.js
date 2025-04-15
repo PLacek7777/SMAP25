@@ -12,31 +12,32 @@ if (siteId != "menu") {
   fetch(`media/questions-${siteId}.json`)
   .then(response => response.json())
   .then(data => {
-    questions = data;
+    questions = data["questions"];
+    tips = data["tips"];
     showQuestion();
   })
   .catch(error => {
     console.error("Błąd podczas ładowania pytań:", error);
-    questionElement.textContent = "Nie udało się wczytać pytań.";
+    questionElement.textContent = "Nie udało się wczytać danych.";
   });
 }
 
 function showQuestion() {
   const q = questions[currentQuestion];
   if (q.tag == "trivia") {
-    questionElement.textContent = `Czy wiedziałeś, że ${q.text}?`;
+    questionElement.innerHTML = q.text.replace(/\n/g, '<br>'); // Replace \n with <br>
     answerInput.style.display = 'none';
     checkButton.innerHTML = 'Dalej';
     feedback.textContent = '';
     feedback.style.color = '';
   }
   else if (q.tag == "question") {
-  questionElement.textContent = `Pytanie ${currentQuestion + 1}: ${q.text}`;
-  answerInput.style.display = 'block';
-  checkButton.innerHTML = 'Sprawdź odpowiedź';
-  answerInput.value = '';
-  feedback.textContent = '';
-  feedback.style.color = '';
+    questionElement.innerHTML = `Pytanie: ${q.text.replace(/\n/g, '<br>')}`; // Replace \n with <br>
+    answerInput.style.display = 'block';
+    checkButton.innerHTML = 'Sprawdź odpowiedź';
+    answerInput.value = '';
+    feedback.textContent = '';
+    feedback.style.color = '';
   }
 }
 
@@ -44,22 +45,22 @@ function checkAnswer() {
   const userAnswer = answerInput.value.trim().toLowerCase();
   const correctAnswers = questions[currentQuestion].answers;
   const tag = questions[currentQuestion].tag;
-  console.log("Odpowiedź użytkownika:", userAnswer);
 
   if (correctAnswers.includes(userAnswer) || tag == "trivia") {
     currentQuestion++;
     if (currentQuestion < questions.length) {
       showQuestion();
-    } else {
+    } 
+    else {
       document.getElementById("question-box").innerHTML = `
-        ✅ <strong>Świetnie!</strong><br>
-        Odpowiedziałeś poprawnie na wszystkie pytania.<br><br>
+        ✅ <strong>Dotarłeś do końca tej stacji</strong><br>
+              ${tips[0].text}<br><br>
         🔍 <em>Wskazówka:</em><br>
-        Następny punkt znajdziesz przy czerwonej altance nad strumieniem.
+        ${tips[0].tip}
       `;
-      document.getElementById("next-question-button").style.display = "block";
     }
-  } else {
+  } 
+  else {
     feedback.textContent = "❌ To nie to. Spróbuj ponownie.";
     feedback.style.color = "#e74c3c";
   }

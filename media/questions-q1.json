@@ -1,17 +1,28 @@
-[
+{
+
+"questions":[
   {
-    "text": "Ile jest przykazań kościelnych?",
-    "answers": ["5", "pięć"],
-    "tag": "question"
-  },
-  {
-    "text": "założycielem Oazy jest ks. Franciszek Blachnicki",
+    "text": "Witaj, widzę, że udało ci się dotrzeć do pierwszej stacji, gdzie wszystko się zaczyna.\nPrzyjęcie Jezusa na jedynego Pana i Zbawiciela to podstawowy krok w drodze do dojrzałości chrześcijańskiej, do której prowadzi Ruch Światło-Życie.",
     "answers": [],
     "tag": "trivia"
   },
   {
-    "text": "Ile tablic zostało przekazanych Mojżeszowi na górze Synaj?",
-    "answers": ["2", "dwie"],
+    "text": "Jakieś pytanie dotyczące tematu (ok)",
+    "answers": ["ok"],
     "tag": "question"
+  },
+  {
+    "text": "Oddaj Mu wszystkie swoje problemy, przyjmij Go do swojego życia i pozwól królować we wszystkich problemach i sprawach codziennych.\nPamiętaj, że to chęci i twoje zaangażowanie, są najważniejsze.",
+    "answers": [],
+    "tag": "trivia"
+  }
+],
+
+"tips":[
+  {
+    "text": "Idź uklęknij przed Jezusem i ofiaruj Mu swoje życie",
+    "tip": "Kolejna stacja znajduje się przy wejściu do kościoła Farnego"
   }
 ]
+
+}

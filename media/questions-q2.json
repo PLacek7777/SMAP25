@@ -1,37 +1,28 @@
-[
+{
+
+  "questions":[
     {
-      "text": "Jak na imię miał papież Jan Paweł II?",
-      "answers": ["karol", "karol wojtyła"],
-      "tag": "question"
+      "text": "Cześć, czekałem na ciebie, oto kolejny ważny krok na naszej drodze. Modlitwa to nie tylko regułki i suche słowa jak może się nam wydawać.\nJest to po prostu rozmowa z twoim przyjacielem, jakim jest Pan Jezus.",
+      "answers": [],
+      "tag": "trivia"
     },
     {
-      "text": "Gdzie urodził się papież Jan Paweł II?",
-      "answers": ["wadowice"],
-      "tag": "question"
+      "text": "Pamiętaj, że działa to jak normalna ludzka relacja, gdzie potrzeba zaangażowania dwóch stron i to od ciebie zależy jak ona będzie wyglądała, bo On cały czas czeka.\nMów Mu o tym jak minął ci dzień, o swoich niepowodzeniach, sukcesach, bo po to mamy przyjaciół, aby nas wspierali w trudnych chwilach i radowali, kiedy jest na to pora.",
+      "answers": [],
+      "tag": "trivia"
     },
     {
-      "text": "Kto jest teraz papieżem?",
-      "answers": ["franciszek", "papież franciszek"],
-      "tag": "question"
-    },
-    {
-      "text": "Skąd Mojżesz wyprowadził naród wybrany?",
-      "answers": ["z egiptu", "egipt"],
-      "tag": "question"
-    },
-    {
-      "text": "Jak nazywała się matka Jana Chrzciciela?",
-      "answers": ["elżbieta"],
-      "tag": "question"
-    },
-    {
-        "text": "Jak nazywał się ojciec Jana Chrzciciela?",
-        "answers": ["zahariasz"],
-        "tag": "question"
-    },
-    {
-      "text": "Gdzie urodził się Jezus?",
-      "answers": ["betlejem"],
+      "text": "Jakieś pytanie dotyczące tematu (ok)",
+      "answers": ["ok"],
       "tag": "question"
     }
-]
+  ],
+  
+  "tips":[
+    {
+      "text": "Już prawie połowa drogi za tobą. Nie zapomnij Bogu podziękować, że jeszcze się nie poddałeś.",
+      "tip": "Kolejna stacja kryje się przy 5 lampie od początku parkingu"
+    }
+  ]
+  
+  }
