@@ -60,6 +60,7 @@ body{
   
   #helpButton {
     position: absolute;
+    bottom: 2%;
     right: 10px;
     height: 36px;
     width: 36px;

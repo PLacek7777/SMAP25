@@ -59,6 +59,7 @@ function checkAnswer() {
         ${tips[0].tip}
       `;
       document.getElementById("map").style.display = 'block';
+      document.getElementById("helpButton").style.bottom = '33%';
     }
   } 
   else {
