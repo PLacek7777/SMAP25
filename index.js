@@ -58,6 +58,7 @@ function checkAnswer() {
         🔍 <em>Wskazówka:</em><br>
         ${tips[0].tip}
       `;
+      document.getElementById("map").style.display = 'block';
     }
   } 
   else {
