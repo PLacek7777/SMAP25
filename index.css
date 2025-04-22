@@ -1,6 +1,7 @@
 body{
   background-color: #ebebeb;
   font-family: sans-serif;
+  height: 100vh
 }
 
 #wrap {
@@ -76,12 +77,23 @@ body{
   }
 
   #map {
+    max-width: 600px;
     display: none;
     position: absolute;
     border: 0;
-    bottom: 10px;
-    width: 100%;
-    height: 30%;
+    width: 50%;
+    height: 35%;
+  }
+
+  #divmap {
+    display: none;
+    max-width: 600px;
+    height: 35%;
+    margin: 15px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
   }
   
   .modal {
