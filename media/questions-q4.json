@@ -15,6 +15,11 @@
       "text": "Jakieś pytanie dotyczące tematu (ok)",
       "answers": ["ok"],
       "tag": "question"
+    },
+    {
+      "text": "Zamień się na chwilę jakimś gadżetem(np. opaską, bransoletką, znaczkiem) z jedną osobą i zróbcie zdjęcie.",
+      "answers":[],
+      "tag":"trivia"
     }
   ],
   

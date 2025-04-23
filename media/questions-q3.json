@@ -15,6 +15,11 @@
       "text": "Jakieś pytanie dotyczące tematu (ok)",
       "answers": ["ok"],
       "tag": "question"
+    },
+    {
+      "text": "Znajdź 2 osoby i zaśpiewajcie razem refren jakiejś znanej pieśni religijnej.\n(Nagranie lub relacja? Mile widziane!)",
+      "answers":[],
+      "tag":"trivia"
     }
   ],
   

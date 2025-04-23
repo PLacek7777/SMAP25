@@ -15,6 +15,11 @@
       "text": "Jakieś pytanie dotyczące tematu (ok)",
       "answers": ["ok"],
       "tag": "question"
+    },
+    {
+      "text": "Zrób wspólne selfie z 3 osobami, których wcześniej nie znałeś/aś.\n(Pokaż je później organizatorowi lub opublikuj z hashtagiem wydarzenia!)",
+      "answers":[],
+      "tag":"trivia"
     }
   ],
   
