@@ -53,7 +53,7 @@ function checkAnswer() {
     } 
     else {
       document.getElementById("question-box").innerHTML = `
-        ✅ <strong>Dotarłeś do końca tej stacji</strong><br>
+        ✅ <strong>Dotarłeś do końca tej stacji, wyzwanie:</strong><br>
               ${tips[0].text}<br><br>
         🔍 <em>Wskazówka:</em><br>
         ${tips[0].tip}
