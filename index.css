@@ -83,6 +83,7 @@ button:hover {
 
   #map {
     max-width: 600px;
+    margin: 10px;
     display: none;
     position: absolute;
     border: 0;
