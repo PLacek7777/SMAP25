@@ -7,6 +7,8 @@ const feedback = document.getElementById("feedback");
 const modal = document.getElementById('helpModal');
 const siteId = document.body.getAttribute('data-site-id');
 const checkButton = document.getElementById("checkAnswer");
+const map = document.getElementById("map");
+const divmap = document.getElementById("divmap");
 
 if (siteId != "menu") {
   fetch(`media/questions-${siteId}.json`)
@@ -41,6 +43,13 @@ function showQuestion() {
   }
 }
 
+function continueToNext() {
+  const text = document.getElementById("text");
+  text.innerHTML = `Oto wskazówka do pierwszej stacji: `; // TODO: Add a tip for the first station
+  map.style.display = 'block';
+  divmap.style.display = 'block'; 
+}
+
 function checkAnswer() {
   const userAnswer = answerInput.value.trim().toLowerCase();
   const correctAnswers = questions[currentQuestion].answers;
@@ -53,13 +62,13 @@ function checkAnswer() {
     } 
     else {
       document.getElementById("question-box").innerHTML = `
-        ✅ <strong>Dotarłeś do końca tej stacji, wyzwanie:</strong><br>
+        ✅ <strong>Dotarłeś do końca tej stacji, twoje wyzwanie to:</strong><br>
               ${tips[0].text}<br><br>
         🔍 <em>Wskazówka:</em><br>
         ${tips[0].tip}
       `;
-      document.getElementById("map").style.display = 'block';
-      document.getElementById("divmap").style.display = 'block';
+      map.style.display = 'block';
+      divmap.style.display = 'block';
     }
   } 
   else {

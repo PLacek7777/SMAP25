@@ -89,6 +89,8 @@ button:hover {
     border: 0;
     width: 90%;
     height: 90%;
+
+    pointer-events: none;
   }
 
   #divmap {
