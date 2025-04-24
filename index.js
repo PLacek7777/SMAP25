@@ -1,5 +1,6 @@
 let currentQuestion = 0;
 let questions = [];
+let tips = [];
 
 const questionElement = document.getElementById("question");
 const answerInput = document.getElementById("answer");
@@ -14,6 +15,9 @@ if (siteId != "menu") {
   .then(data => {
     questions = data["questions"];
     tips = data["tips"];
+    if(document.cookie.split(`${siteId}=`).pop() == 1){
+      end();
+    }
     showQuestion();
   })
   .catch(error => {
@@ -22,22 +26,48 @@ if (siteId != "menu") {
   });
 }
 
+function end() {
+  document.getElementById("question-box").innerHTML = `
+        ✅ <strong>Dotarłeś do końca tej stacji, wyzwanie:</strong><br>
+              ${tips[0].text}<br><br>
+        🔍 <em>Wskazówka:</em><br>
+        ${tips[0].tip}
+      `;
+      document.cookie = `${siteId}=1`;
+      window.addEventListener("beforeunload", event => {
+        const message = "Czy na pewno chcesz opuścić stronę?";
+        alert(message);
+        event.returnValue = message;
+        return message;
+      })
+      try{
+        document.getElementById("map").style.display = 'block';
+        document.getElementById("divmap").style.display = 'block';
+      }
+      finally{}
+}
+
 function showQuestion() {
   const q = questions[currentQuestion];
-  if (q.tag == "trivia") {
-    questionElement.innerHTML = q.text.replace(/\n/g, '<br>'); // Replace \n with <br>
-    answerInput.style.display = 'none';
-    checkButton.innerHTML = 'Dalej';
-    feedback.textContent = '';
-    feedback.style.color = '';
+  try{
+    if (q.tag == "trivia") {
+      questionElement.innerHTML = q.text.replace(/\n/g, '<br>'); // Replace \n with <br>
+      answerInput.style.display = 'none';
+      checkButton.innerHTML = 'Dalej';
+      feedback.textContent = '';
+      feedback.style.color = '';
+    }
+    else if (q.tag == "question") {
+      questionElement.innerHTML = `Pytanie: ${q.text.replace(/\n/g, '<br>')}`; // Replace \n with <br>
+      answerInput.style.display = 'block';
+      checkButton.innerHTML = 'Sprawdź odpowiedź';
+      answerInput.value = '';
+      feedback.textContent = '';
+      feedback.style.color = '';
+    }
   }
-  else if (q.tag == "question") {
-    questionElement.innerHTML = `Pytanie: ${q.text.replace(/\n/g, '<br>')}`; // Replace \n with <br>
-    answerInput.style.display = 'block';
-    checkButton.innerHTML = 'Sprawdź odpowiedź';
-    answerInput.value = '';
-    feedback.textContent = '';
-    feedback.style.color = '';
+  finally{
+    console.log("error");
   }
 }
 
@@ -52,14 +82,8 @@ function checkAnswer() {
       showQuestion();
     } 
     else {
-      document.getElementById("question-box").innerHTML = `
-        ✅ <strong>Dotarłeś do końca tej stacji, wyzwanie:</strong><br>
-              ${tips[0].text}<br><br>
-        🔍 <em>Wskazówka:</em><br>
-        ${tips[0].tip}
-      `;
-      document.getElementById("map").style.display = 'block';
-      document.getElementById("divmap").style.display = 'block';
+      document.cookie = `${siteId}=1`;
+      end();
     }
   } 
   else {
