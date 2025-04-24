@@ -2,13 +2,18 @@
 
 "questions":[
   {
-    "text": "Witaj, widzę, że udało ci się dotrzeć do pierwszej stacji, gdzie wszystko się zaczyna.\nPrzyjęcie Jezusa na jedynego Pana i Zbawiciela to podstawowy krok w drodze do dojrzałości chrześcijańskiej, do której prowadzi Ruch Światło-Życie.",
-    "answers": [],
-    "tag": "trivia"
+    "text": "Podaj jednego z ewangelistów",
+    "answers": ["mateusz", "marek", "łukasz", "jan"],
+    "tag": "question"
   },
   {
-    "text": "Jakieś pytanie dotyczące tematu (ok)",
-    "answers": ["ok"],
+    "text": "Kto został posłany do uczniów w dniu Piędziesiątnicy?",
+    "answers": ["duch święty"],
+    "tag": "question"    
+  },
+  {
+    "text": "Witaj, widzę, że udało ci się dotrzeć do pierwszej stacji, gdzie wszystko się zaczyna.\nPrzyjęcie Jezusa na jedynego Pana i Zbawiciela to podstawowy krok w drodze do dojrzałości chrześcijańskiej, do której prowadzi Ruch Światło-Życie.",
+    "answers": [],
     "tag": "trivia"
   },
   {
@@ -20,7 +25,7 @@
 
 "tips":[
   {
-    "text": "Zbierz autografy od 5 osób, ktorych wcześniej nie znałeś.\n(Bonus: zapytaj każdą z nich, skąd przyjechała!)",
+    "text": "Zbierz autografy od 5 osób, ktorych wcześniej nie znałeś. (Bonus: zapytaj każdą z nich, skąd przyjechała!)",
     "tip": "Kolejna stacja znajduje się przy wejściu do kościoła Farnego"
   }
 ]

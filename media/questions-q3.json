@@ -2,6 +2,16 @@
 
   "questions":[
     {
+      "text": "Kto jest autorem większości Psalmów?",
+      "answers": ["dawid", "król dawid", "dawid król"],
+      "tag": "question"
+    },
+    {
+      "text": "Co robił święty Paweł przed nawróceniem?",
+      "answers": ["prześladował chrześcijan", "prześladował chrześcijan i był faryzeuszem", "faryzeusz", "faryzeusz i prześladowca chrześcijan"],
+      "tag": "question"
+    },
+    {
       "text": "Witaj, cieszę się, że cię widzę i dotarłeś aż tutaj. Pewnie zastanawia cię ta stacja, już ci po krótce wszystko tłumaczę.\nPustynia jest czymś naturalnym w życiu każdego chrześcijanina przez co nie można się zrażać.",
       "answers": [],
       "tag": "trivia"
@@ -10,11 +20,6 @@
       "text": "Tłumacząc jest to po prostu nieodczuwanie działania Boga w naszym życiu.\nJak to Oazowicze mawiają 'Jezus to nie kiełbasa, więc nie mamy go czuć', warto zaznaczyć, że On działa w naszym życiu cały czas, ale często nie potrafimy tego dostrzec od razu i odczuwamy pustkę, którą nazywamy potocznie PUSTYNIĄ.",
       "answers": [],
       "tag": "trivia"
-    },
-    {
-      "text": "Jakieś pytanie dotyczące tematu (ok)",
-      "answers": ["ok"],
-      "tag": "question"
     },
     {
       "text": "Wiara, cierpliwość i nadzieją są w takich momentach najważniejsze, więc trwaj dzielnie w tym i nie poddawaj się.",

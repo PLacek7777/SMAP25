@@ -13,15 +13,21 @@
     </a>
   <div id="wrap">
     <h1 id="punkt">ALLELUJA!</h1>
-    <p style="text-align:center;">Witaj drogi podróżniku, jeżeli chcesz odnaleźć skarb Ruchu Światło-Życie to podejmij ten wysiłek i podążaj drogą nowego człowieka.</p>
-    <p style="text-align:center;">Po rozpoczęciu wyprawy otrzymasz wskazówkę, dzięki której dotrzesz do pierwszej z pięciu stacji. Wypatruj kodów QR, aby odbierać coraz to nowsze wskazówki, które zaprowadzą cię do celu. Pamiętaj, że wskazówki mogą być ukryte, niedostrzegalne dla zwykłego oka przechodnia.</p>
-    <p style="text-align:center;">Masz już wszystkie podstawowe informacje, więc teraz ruszaj. Weź ze sobą znajomych, żeby umilić czas podróży.</p>
-    <p style="text-align:center;"><strong>POWODZENIA!!!</strong></p>
-    <div style="text-align: center; margin-top: 30px;">
-      <a href="set1.html">
-        <button>Start</button>
-      </a>  
+    <div id="text">
+      <p style="text-align:center;">Witaj drogi podróżniku, jeżeli chcesz odnaleźć skarb Ruchu Światło-Życie to podejmij ten wysiłek i podążaj drogą nowego człowieka.</p>
+      <p style="text-align:center;">Po rozpoczęciu wyprawy otrzymasz wskazówkę, dzięki której dotrzesz do pierwszej z pięciu stacji. Wypatruj kodów QR, aby odbierać coraz to nowsze wskazówki, które zaprowadzą cię do celu. Pamiętaj, że wskazówki mogą być ukryte, niedostrzegalne dla zwykłego oka przechodnia.</p>
+      <p style="text-align:center;">Na każdej stacji znajdziesz zadanie do wykonania. Po jego ukończeniu, przeczytaj dokładnie informacje dalej zamieszczone.</p>
+      <p style="text-align:center;">Na końcu czeka na Ciebie nagroda, która będzie przypominać o tej wspaniałej przygodzie.</p>
+      <p style="text-align:center;">Nie zapomnij że zawsze możesz wrócić do danego punktu jeśli czegoś zapomnisz.</p>
+      <p style="text-align:center;">Masz już wszystkie podstawowe informacje, więc teraz ruszaj. Weź ze sobą znajomych, żeby umilić czas podróży.</p>
+      <p style="text-align:center;"><strong>POWODZENIA!!!</strong></p>
+      <div style="text-align: center; margin-top: 30px;">
+        <button onclick="continueToNext()">Start</button>
+      </div>
     </div>
+  </div>
+  <div id="divmap">
+    <iframe id="map" src="map" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" loading="lazy"></iframe> <!-- TODO: zmienić na pinezkę -->
   </div>
   <button id="helpButton" onclick="displayHelp()"><strong>?</strong></button>
 

@@ -2,6 +2,16 @@
 
   "questions":[
     {
+      "text": "Podczas jakiej części Mszy Świętej słuchamy Słowa Bożego?",
+      "answers": ["liturgia słowa", "ewangelia", "czytania"],
+      "tag": "question"
+    },
+    {
+      "text": "Co krzyczał lud podczas wjazdu Jezusa do Jerozolimy?",
+      "answers": ["hosanna","hosanna na wyskokości", "błogosławiony ten, który przychodzi w imię pańskie", "błogosławiony ten, który przychodzi w imię pańskie hosanna na wysokości", "hosanna synowi dawida", "hosanna synowi dawida błogosławiony ten, który przychodzi w imię pańskie"],
+      "tag": "question"
+    },
+    {
       "text": "Cześć, to znowu ty, już prawie koniec twojej wędrówki, więc jeszcze jedną rzeczą wartą poruszenia jest wspólnota. Samemu wszędzie jest ciężko, dlatego wszyscy jednoczymy się w Kościele.\nW Oazie ważne są małe grupy, gdzie wspólnie przeżywamy różne poważne treści, pogłębiamy wiarę i dzielimy się nią.",
       "answers": [],
       "tag": "trivia"
@@ -10,11 +20,6 @@
       "text": "Wspólnota pokazuje nam, że każdy ma swoje miejsce w Kościele i swoje osobiste zadanie, w którym nikt inny mu nie dorówna. Całe życie uczymy się kochać miłością AGAPE, czyli tą bezwarunkową, którą obdarza nas Chrystus.\nJest coś co pozwala istnieć wspólnocie i coś co ją spaja, a jest to właśnie JEZUS!",
       "answers": [],
       "tag": "trivia"
-    },
-    {
-      "text": "Jakieś pytanie dotyczące tematu (ok)",
-      "answers": ["ok"],
-      "tag": "question"
     },
     {
       "text": "Dziękuję ci za ten wspólny czas spędzony podczas tej wędrówki. Jestem dumny, że podołałeś/aś temu zadaniu!!! Krocz w taki sam sposób przez całe życie!!! POWODZENIA I ODWAGI!!! ",

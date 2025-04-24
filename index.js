@@ -8,6 +8,8 @@ const feedback = document.getElementById("feedback");
 const modal = document.getElementById('helpModal');
 const siteId = document.body.getAttribute('data-site-id');
 const checkButton = document.getElementById("checkAnswer");
+const map = document.getElementById("map");
+const divmap = document.getElementById("divmap");
 
 if (siteId != "menu") {
   fetch(`media/questions-${siteId}.json`)
@@ -69,6 +71,13 @@ function showQuestion() {
   finally{
     console.log("error");
   }
+}
+
+function continueToNext() {
+  const text = document.getElementById("text");
+  text.innerHTML = `Oto wskazówka do pierwszej stacji: `; // TODO: Add a tip for the first station
+  map.style.display = 'block';
+  divmap.style.display = 'block'; 
 }
 
 function checkAnswer() {
