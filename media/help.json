@@ -12,11 +12,15 @@
         "content": "Po zeskanowaniu kodu QR automatycznie zostaniesz przeniesiony do następnych pytań. Odpowiedz na nie, aby otrzymać kolejne wskazówki."
     },
     {
-        "title": "Ciekawostki",
-        "content": "W grze znajdziesz również ciekawostki związane z Ruchem Światło Życie. Czytaj je uważnie, przydadzą sie w kolejnych pytaniach."
+        "title": "Treść stacji",
+        "content": "W stacjach zawarte są podstawowe inforamcje na temat życia w Ruchu Światło-Życie. Czytaj je uważnie, przydadzą sie na samym końcu."
+    },
+    {
+        "title": "Tajne hasła",
+        "content": "W każdej stacji znajdziesz hasło, wypisane DUŻYMI literami. Będzie ono potrzebne do odblokowania kolejnej stacji. Nie zapomnij go spisać!"
     },
     {
         "title": "Koniec gry",
-        "content": "Po odpowiedzeniu na wszystkie pytania dostaniesz ostatnią wskazówkę, która zaprowadzi Cię do skarbu. Powodzenia!"
+        "content": "Po odwiedzeniu wszystkich stacji dostaniesz przepustkę, która zaprowadzi Cię do skarbu. Powodzenia!"
     }
 ]
