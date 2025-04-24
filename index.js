@@ -17,7 +17,7 @@ if (siteId != "menu") {
   .then(data => {
     questions = data["questions"];
     tips = data["tips"];
-    if(document.cookie.split(`${siteId}=`).pop() == 1){
+    if(document.cookie.split(` ${siteId}=`).pop().split(";").shift() == 1){
       end();
     }
     showQuestion();
