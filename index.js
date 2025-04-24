@@ -57,6 +57,7 @@ function showQuestion() {
         questionElement.innerHTML = q.text.replace(/\n/g, '<br>'); // Replace \n with <br>
         answerInput.style.display = 'none';
         checkButton.innerHTML = 'Dalej';
+        checkButton.onclick = checkAnswer;
         feedback.textContent = '';
         feedback.style.color = '';
         break;
@@ -64,6 +65,7 @@ function showQuestion() {
         questionElement.innerHTML = `Pytanie: ${q.text.replace(/\n/g, '<br>')}`; // Replace \n with <br>
         answerInput.style.display = 'block';
         checkButton.innerHTML = 'Sprawdź odpowiedź';
+        checkButton.onclick = checkAnswer;
         answerInput.value = '';
         feedback.textContent = '';
         feedback.style.color = '';
