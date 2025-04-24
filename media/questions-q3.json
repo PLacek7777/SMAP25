@@ -3,7 +3,7 @@
   "questions":[
     {
       "text": "Wpisz hasło, które dostałeś na poprzedniej stacji",
-      "answers": ["2689367b205c16ce32ed4200942b8b8b1e262dfc70d9bc9fbc77c49699a4f1df"],
+      "answers": ["2992072303bc6b617bab33457c6af00350d489d49a3b48cf2cb5018ebedc4a02"],
       "tag": "passwd"
     },
     {
@@ -36,7 +36,7 @@
   "tips":[
     {
       "text": "Znajdź 2 osoby i zaśpiewajcie razem refren jakiejś znanej pieśni religijnej.\n(Nagranie lub relacja? Mile widziane!)",
-      "tip": "Kolejna stacja znajduje się przy Pomniku Pacyfikacji Leżajska, Cel już coraz bliżej!"
+      "tip": "Kolejna stacja znajduje się przy Pomniku Pacyfikacji Leżajska, Cel już coraz bliżej! Hasło: Pustynia"
     }
   ]
   

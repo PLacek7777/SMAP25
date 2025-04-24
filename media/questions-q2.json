@@ -3,7 +3,7 @@
   "questions":[
     {
       "text": "Wpisz hasło, które dostałeś na poprzedniej stacji",
-      "answers": ["2689367b205c16ce32ed4200942b8b8b1e262dfc70d9bc9fbc77c49699a4f1df"],
+      "answers": ["a2203ce1bada88bc4e4f1ad8d701c4108e5785edc863fc5f487cc5e6966f82c8"],
       "tag": "passwd"
     },
     {
@@ -36,7 +36,7 @@
   "tips":[
     {
       "text": "Zrób wspólne selfie z 3 osobami, których wcześniej nie znałeś/aś.\n(Pokaż je później organizatorowi lub opublikuj z hashtagiem wydarzenia!)",
-      "tip": "Kolejna stacja kryje się na dzewie przy placu bazarowym"
+      "tip": "Kolejna stacja kryje się na dzewie przy placu bazarowym. Hasło: Słuchaj"
     }
   ]
   

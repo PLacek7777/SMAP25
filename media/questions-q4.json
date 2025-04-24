@@ -3,7 +3,7 @@
   "questions":[
     {
       "text": "Wpisz hasło, które dostałeś na poprzedniej stacji",
-      "answers": ["2689367b205c16ce32ed4200942b8b8b1e262dfc70d9bc9fbc77c49699a4f1df"],
+      "answers": ["968a9960a27670688a5e3abd7746f82a0ada893f3e8efbe955d3f97e717de6cb"],
       "tag": "passwd"
     },
     {
@@ -35,7 +35,7 @@
   
   "tips":[
     {
-      "text": "Zamień się na chwilę jakimś gadżetem(np. opaską, bransoletką, znaczkiem) z jedną osobą i zróbcie zdjęcie.\n",
+      "text": "Zamień się na chwilę jakimś gadżetem (np. opaską, bransoletką, znaczkiem) z jedną osobą i zróbcie zdjęcie.\n",
       "tip": "Oto Jego wizerunek, zanieś go do namiotu Oazy, który jest twoją ostatnią stacją."
     }
   ]
