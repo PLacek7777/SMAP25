@@ -43,8 +43,8 @@ function end() {
         return message;
       })
       try{
-        document.getElementById("map").style.display = 'block';
-        document.getElementById("divmap").style.display = 'block';
+        map.style.display = 'block';
+        divmap.style.display = 'block';
       }
       finally{}
 }
@@ -52,20 +52,36 @@ function end() {
 function showQuestion() {
   const q = questions[currentQuestion];
   try{
-    if (q.tag == "trivia") {
-      questionElement.innerHTML = q.text.replace(/\n/g, '<br>'); // Replace \n with <br>
-      answerInput.style.display = 'none';
-      checkButton.innerHTML = 'Dalej';
-      feedback.textContent = '';
-      feedback.style.color = '';
-    }
-    else if (q.tag == "question") {
+    switch(q.tag){
+      case "trivia":
+        questionElement.innerHTML = q.text.replace(/\n/g, '<br>'); // Replace \n with <br>
+        answerInput.style.display = 'none';
+        checkButton.innerHTML = 'Dalej';
+        feedback.textContent = '';
+        feedback.style.color = '';
+        break;
+      case "question": 
+        questionElement.innerHTML = `Pytanie: ${q.text.replace(/\n/g, '<br>')}`; // Replace \n with <br>
+        answerInput.style.display = 'block';
+        checkButton.innerHTML = 'Sprawdź odpowiedź';
+        answerInput.value = '';
+        feedback.textContent = '';
+        feedback.style.color = '';
+        break;
+      case "passwd": 
       questionElement.innerHTML = `Pytanie: ${q.text.replace(/\n/g, '<br>')}`; // Replace \n with <br>
+      answerInput.placeholder = "Wpisz hasło...";
       answerInput.style.display = 'block';
-      checkButton.innerHTML = 'Sprawdź odpowiedź';
+      checkButton.innerHTML = 'Sprawdź hasło';
+      checkButton.onclick = checkPassword;
       answerInput.value = '';
       feedback.textContent = '';
       feedback.style.color = '';
+      break;
+    }
+    if (q.tag == "trivia") {
+    }
+    else if (q.tag == "question") {
     }
   }
   finally{
@@ -80,11 +96,22 @@ function continueToNext() {
   divmap.style.display = 'block'; 
 }
 
+async function hash(tekst) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(tekst);
+  const hash = await crypto.subtle.digest("SHA-256", data);
+
+  // Zamiana ArrayBuffer → hex string
+  return Array.from(new Uint8Array(hash))
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
 function checkAnswer() {
   const userAnswer = answerInput.value.trim().toLowerCase();
   const correctAnswers = questions[currentQuestion].answers;
   const tag = questions[currentQuestion].tag;
-
+  
   if (correctAnswers.includes(userAnswer) || tag == "trivia") {
     currentQuestion++;
     if (currentQuestion < questions.length) {
@@ -101,9 +128,21 @@ function checkAnswer() {
   }
 }
 
+function checkPassword() {
+  const userAnswer = answerInput.value.trim().toLowerCase();
+  const correctAnswers = questions[currentQuestion].answers;
+  const tag = questions[currentQuestion].tag;
+  hash(userAnswer).then(hash => {
+    if(correctAnswers.includes(hash)){
+      currentQuestion++;
+      showQuestion();
+    }
+  });
+}
+
 function displayHelp() {
   fetch("media/help.json")
-    .then(response => response.json())
+  .then(response => response.json())
     .then(data => {
       const helpList = document.getElementById("helpList");
       helpList.innerHTML = "";

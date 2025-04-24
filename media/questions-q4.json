@@ -2,6 +2,11 @@
 
   "questions":[
     {
+      "text": "Wpisz hasło, które dostałeś na poprzedniej stacji",
+      "answers": ["2689367b205c16ce32ed4200942b8b8b1e262dfc70d9bc9fbc77c49699a4f1df"],
+      "tag": "passwd"
+    },
+    {
       "text": "Podczas jakiej części Mszy Świętej słuchamy Słowa Bożego?",
       "answers": ["liturgia słowa", "ewangelia", "czytania", "liturgii słowa"],
       "tag": "question"
