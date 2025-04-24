@@ -27,6 +27,9 @@ if (siteId != "menu") {
     questionElement.textContent = "Nie udało się wczytać danych.";
   });
 }
+else if (siteId == "menu") {
+  displayHelp();
+}
 
 function end() {
   document.getElementById("question-box").innerHTML = `
@@ -80,10 +83,6 @@ function showQuestion() {
       feedback.textContent = '';
       feedback.style.color = '';
       break;
-    }
-    if (q.tag == "trivia") {
-    }
-    else if (q.tag == "question") {
     }
   }
   finally{
