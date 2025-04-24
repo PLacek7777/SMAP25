@@ -74,7 +74,7 @@ function showQuestion() {
         feedback.style.color = '';
         break;
       case "passwd": 
-      questionElement.innerHTML = `Pytanie: ${q.text.replace(/\n/g, '<br>')}`; // Replace \n with <br>
+      questionElement.innerHTML = `${q.text.replace(/\n/g, '<br>')}`; // Replace \n with <br>
       answerInput.placeholder = "Wpisz hasło...";
       answerInput.style.display = 'block';
       checkButton.innerHTML = 'Sprawdź hasło';
@@ -137,6 +137,10 @@ function checkPassword() {
     if(correctAnswers.includes(hash)){
       currentQuestion++;
       showQuestion();
+    }
+    else {
+      feedback.textContent = "❌ To nie to. Spróbuj ponownie.";
+      feedback.style.color = "#e74c3c";
     }
   });
 }
