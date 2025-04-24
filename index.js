@@ -52,7 +52,7 @@ function end() {
 function showQuestion() {
   const q = questions[currentQuestion];
   try{
-    switch(q.tag){
+    switch (q.tag) {
       case "trivia":
         questionElement.innerHTML = q.text.replace(/\n/g, '<br>'); // Replace \n with <br>
         answerInput.style.display = 'none';
@@ -69,19 +69,15 @@ function showQuestion() {
         feedback.style.color = '';
         break;
       case "passwd": 
-      questionElement.innerHTML = `Pytanie: ${q.text.replace(/\n/g, '<br>')}`; // Replace \n with <br>
-      answerInput.placeholder = "Wpisz hasło...";
-      answerInput.style.display = 'block';
-      checkButton.innerHTML = 'Sprawdź hasło';
-      checkButton.onclick = checkPassword;
-      answerInput.value = '';
-      feedback.textContent = '';
-      feedback.style.color = '';
+        questionElement.innerHTML = `Pytanie: ${q.text.replace(/\n/g, '<br>')}`; // Replace \n with <br>
+        answerInput.placeholder = "Wpisz hasło...";
+        answerInput.style.display = 'block';
+        checkButton.innerHTML = 'Sprawdź hasło';
+        checkButton.onclick = checkPassword;
+        answerInput.value = '';
+        feedback.textContent = '';
+        feedback.style.color = '';
       break;
-    }
-    if (q.tag == "trivia") {
-    }
-    else if (q.tag == "question") {
     }
   }
   finally{
