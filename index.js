@@ -92,7 +92,7 @@ function showQuestion() {
 
 function continueToNext() {
   const text = document.getElementById("text");
-  text.innerHTML = `Oto wskazówka do pierwszej stacji: Pomnik . Hasło: Alleluja`; // TODO: Add a tip for the first station
+  text.innerHTML = `Oto wskazówka do pierwszej stacji: Pomnik koło schodów. Hasło: Alleluja`; // TODO: Add a tip for the first station
   map.style.display = 'block';
   divmap.style.display = 'block'; 
 }
