@@ -1,5 +1,27 @@
+Linki:
+quiz-oaza.pages.dev - strona startowa (bez pytań)
+quiz-oaza.pages.dev/agHi98jg.html - 1 stacja
+quiz-oaza.pages.dev/buH77687Jfeok9J.html - 2 stacja
+quiz-oaza.pages.dev/cGeifhi657h.html - 3 stacja
+quiz-oaza.pages.dev/diuhg8hujgHJ.html - 4 stacja
+
 Hasła: 
-q1 - alleluja - 0c2c72499657f900f48515f84cd4b7fbd2c54b10550b10f09817517cea1ea608
-q2 - król - a2203ce1bada88bc4e4f1ad8d701c4108e5785edc863fc5f487cc5e6966f82c8
-q3 - słuchaj - 2992072303bc6b617bab33457c6af00350d489d49a3b48cf2cb5018ebedc4a02
-q4 - pustynia - 968a9960a27670688a5e3abd7746f82a0ada893f3e8efbe955d3f97e717de6cb
+q1 - alleluja
+q2 - król
+q3 - słuchaj
+q4 - pustynia
+
+Pełne odpowiedzi znajdują sie w plikach media/questions-q#.json
+
+q1:
+  "answers": ["mateusz"]
+  "answers": ["duch święty"]
+q2
+  "answers": ["łukasz apostoł"]
+  "answers": ["kapłańska"]
+q3
+  "answers": ["dawid"]
+  "answers": ["prześladował chrześcijan"]
+q4
+  "answers": ["liturgia słowa"]
+  "answers": ["hosanna"]
