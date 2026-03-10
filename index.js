@@ -89,7 +89,7 @@ function showQuestion() {
     console.log("error");
   }
 }
-
+// Pokazywanie stacji
 function continueToNext() {
   const text = document.getElementById("text");
   text.innerHTML = `Oto wskazówka do pierwszej stacji: Na dole schodów. Hasło: Alleluja`; // TODO: Add a tip for the first station
