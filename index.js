@@ -17,7 +17,7 @@ if (siteId != "menu") {
   .then(data => {
     questions = data["questions"];
     tips = data["tips"];
-    if(document.cookie.split(` ${siteId}=`).pop().split(";").shift() == 1){
+    if(document.cookie.split(`${siteId}=`).pop().split(";").shift() == 1){
       end();
     }
     showQuestion();
@@ -40,10 +40,7 @@ function end() {
       `;
       document.cookie = `${siteId}=1`;
       window.addEventListener("beforeunload", event => {
-        const message = "Czy na pewno chcesz opuścić stronę?";
-        alert(message);
-        event.returnValue = message;
-        return message;
+        event.preventDefault();
       })
       try{
         map.style.display = 'block';
