@@ -46,12 +46,7 @@ function end() {
         ${tips[0].tip}
       `;
       document.cookie = `${siteId}=1`;
-      window.addEventListener("beforeunload", event => {
-        const message = "Czy na pewno chcesz opuścić stronę?";
-        alert(message);
-        event.returnValue = message;
-        return message;
-      })
+      window.addEventListener("beforeunload", event => event.preventDefault());
       try{
         map.style.display = 'block';
         divmap.style.display = 'block';
