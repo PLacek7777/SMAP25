@@ -1,0 +1,62 @@
+[
+    {
+        "EncStageName": "a33fb3a01a8376890df9b6901afd413110b5e7f8223d41180a97ad36b199209c",
+        "Name": "Stacja 1",
+        "Characters":"Szymon Piotr i Andrzej", 
+        "Password": "8034"
+    },
+    {
+        "EncStageName": "720bea2a8db4321639e9c1bdf98e03b9a3772ded3ad867dba8b31f3dbaec6e04",
+        "Name": "Stacja 2",
+        "Characters": "Jan",
+        "Password": "3209"
+    },
+    {
+        "EncStageName": "827e78e0612c98ff2aab7fcc0bf0bd59df3ae66d9e5adb2d8abc6c52a8ec9e19",
+        "Name":"Stacja 3",
+        "Characters": "Paweł (Szaweł)",
+        "Password": "2049"
+    },
+    {
+        "EncStageName": "2b85099533a44aa7d07537e53262483df0daaf23b0def5f53f3b7d8537c21c03",
+        "Name":"Stacja 4",
+        "Characters": "Nikodem",
+        "Password": "6067"
+    },
+    {
+        "EncStageName": "2c734dcd766a2c87cec92629e2a47f6e4466133e7649d5d34397639fc1cb3ab5",
+        "Name":"Stacja 5",
+        "Characters": "Bartłoimej",
+        "Password": "9307"
+    },
+    {
+        "EncStageName": "be3c9375cbdf6294fa7ee081e7f06e6d09d705fe63a6d0e40f1a68717a9cfae1",
+        "Name":"Stacja 6",
+        "Characters": "Samarytanka",
+        "Password": "2461"
+    },
+    {
+        "EncStageName": "2353288294477d9494230e1cfc3e2253702423feb7aedaec138480ac8ffd0b6a",
+        "Name":"Stacja 7",
+        "Characters": "Niewidomy od urodzenia",
+        "Password": "1290"
+    },
+    {
+        "EncStageName": "5025265ceb518cb623726ac0b5dde18c8d363b410e056e9ef8717d5cafda0739",
+        "Name":"Stacja 8",
+        "Characters": "Marta, Maria, Zebedeusz",
+        "Password": "8371"
+    },
+    {
+        "EncStageName": "85e421900c3b6fbf15dbb70caa73bdf59ed3e19755c543c03dd0209d8c54ea08",
+        "Name": "Stacja 9",
+        "Characters": "Jan Chrzciciel",
+        "Password": "2137"
+    },
+    {
+        "EncStageName": "06edb6fc16e9c5e0c895b3c69574c3a0adc294597a4865d1053acac949941863",
+        "Name": "Stacja 10",
+        "Characters": "Zacheusz",
+        "Password": "6767"
+    }
+]
