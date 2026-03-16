@@ -1,14 +1,15 @@
 body{
-  background-color: #ebebeb;
+  background-color: #f0fffe;
   font-family: sans-serif;
-  height: 100vh
+  height: 100vh;
+  align-content: center;
 }
 
 #wrap {
   max-width: 600px;
   margin: 15px auto;
   padding: 20px;
-  background-color: #ffffff;
+  background-color: #d2f8ffcd;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
@@ -43,8 +44,8 @@ input[type="text"] {
 button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #24d36d;
-  color: rgb(250, 255, 237);
+  background-color: #1fac31;
+  color: rgb(255, 255, 255);
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -63,16 +64,20 @@ button:hover {
   position: fixed;
   bottom: 10px;
   right: 10px;
-  height: 36px;
-  width: 36px;
-  background-color: #208bfd;
-  color: rgb(220, 247, 222);
+  height: 40px;
+  width: 40px;
+  background-color: #167be7a9;
+  color: rgb(220, 247, 247);
   border: none;
   padding: 0px;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  border-radius: 50%;
+  cursor: pointer; 
   font-size: 20px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#helpButton:hover {
+  background-color: #1368c3;
 }
 
 #buttonHolder{
@@ -81,48 +86,53 @@ button:hover {
   align-items: center;
 }
 
-  #map {
-    max-width: 600px;
-    padding: 10px;
-    display: none;
-    justify-self: center;
-    border: 0;
-    width: 90%;
-    height: 90%;
+#map {
+  max-width: 600px;
+  padding: 10px;
+  display: none;
+  justify-self: center;
+  border: 0;
+  width: 90%;
+  height: 90%;
 
-    pointer-events: none;
-  }
+  pointer-events: none;
+}
 
-  #divmap {
-    display: none;
-    max-width: 600px;
-    height: 35%;
-    margin: 15px auto;
-    padding: 10px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-  }
-  
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5);
-  }
+#divmap {
+  display: none;
+  max-width: 600px;
+  height: 35%;
+  margin: 15px auto;
+  padding: 10px;
+  background-color: #d2f8ffcd;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
 .modal-content {
-  background-color: #fff;
+  background-color: #afdee2;
   margin: 10% auto;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 39px;
   max-width: 800px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.534);
+  box-shadow: 0 5px 20px rgb(0, 0, 0);
+}
+
+#helpList {
+  margin: 3px;
+  padding-left: 10px;
 }
 
 .close {
@@ -130,4 +140,5 @@ button:hover {
   font-size: 30px;
   cursor: pointer;
   color: rgb(148, 2, 2);
+  padding: 8px;
 }
