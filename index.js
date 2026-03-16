@@ -1,8 +1,18 @@
+const { act } = require("react");
+
 let currentQuestion = 0;
 let questions = [];
 let tips = [];
+<<<<<<< HEAD
 let DoneTasks = [];
 let actualTaskNumber = 0;
+=======
+let notDoneTasks = [1,2,3,4,5,6,7,8,9,10];
+let DoneTasks = [];
+let actualTaskNumber = 0;
+let pageAdress = "index.html";
+
+>>>>>>> 015be51eb660e9c91541e0c738b59d8a4a48c479
 const questionElement = document.getElementById("question");
 const answerInput = document.getElementById("answer");
 const feedback = document.getElementById("feedback");
@@ -176,8 +186,22 @@ function displayHelp() {
 
 showQuestion();
 
-//---------------------------Dla index.html
+async function continueToNext() {
+  
+  while(DoneTasks.includes(actualTaskNumer))
+  {
+    actualTaskNumber = Math.floor(Math.random() * 10) + 1; // losuje 1-10
+  }
+  DoneTasks.push(actualTaskNumber);
+  notDoneTasks.slice(notDoneTasks.find(actualTaskNumber), 1);
+  actualTaskNumber = 1;
+  
+    const hash = await sha256("Stacja " + actualTaskNumber);
+    let pageAdress = hash + ".html";
+    window.location.href = pageAdress;
+}
 
+<<<<<<< HEAD
 //Wskazówka do pierwszej stacji
 async function continueToNext() {
   while(DoneTasks.includes(actualTaskNumber))
@@ -189,10 +213,17 @@ async function continueToNext() {
     window.location.assign(`${pageAdress}`);
 }
 
+=======
+>>>>>>> 015be51eb660e9c91541e0c738b59d8a4a48c479
 async function sha256(message) {
     const msgBuffer = new TextEncoder().encode(message);
     const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); 
+<<<<<<< HEAD
     return hashHex;
 }
+=======
+    return  hashHex;
+  }
+>>>>>>> 015be51eb660e9c91541e0c738b59d8a4a48c479
