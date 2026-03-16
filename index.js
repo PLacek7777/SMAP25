@@ -201,29 +201,10 @@ async function continueToNext() {
     window.location.href = pageAdress;
 }
 
-<<<<<<< HEAD
-//Wskazówka do pierwszej stacji
-async function continueToNext() {
-  while(DoneTasks.includes(actualTaskNumber))
-    actualTaskNumber = Math.floor(Math.random() * 10) + 1; // losuje 1-10
-  actualTaskNumber = 1;  
-  const hash = await sha256("Stacja " + actualTaskNumber);
-    let pageAdress = hash + ".html";
-    
-    window.location.assign(`${pageAdress}`);
-}
-
-=======
->>>>>>> 015be51eb660e9c91541e0c738b59d8a4a48c479
 async function sha256(message) {
     const msgBuffer = new TextEncoder().encode(message);
     const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); 
-<<<<<<< HEAD
-    return hashHex;
-}
-=======
     return  hashHex;
   }
->>>>>>> 015be51eb660e9c91541e0c738b59d8a4a48c479
