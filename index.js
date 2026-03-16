@@ -1,7 +1,8 @@
 let currentQuestion = 0;
 let questions = [];
 let tips = [];
-
+let DoneTasks = [];
+let actualTaskNumber = 0;
 const questionElement = document.getElementById("question");
 const answerInput = document.getElementById("answer");
 const feedback = document.getElementById("feedback");
@@ -178,9 +179,20 @@ showQuestion();
 //---------------------------Dla index.html
 
 //Wskazówka do pierwszej stacji
-function continueToNext() {
-  const text = document.getElementById("text");
-  text.innerHTML = `Oto wskazówka do pierwszej stacji: Na dole schodów. Hasło: Alleluja`;
-  map.style.display = 'block';
-  divmap.style.display = 'block'; 
+async function continueToNext() {
+  while(DoneTasks.includes(actualTaskNumber))
+    actualTaskNumber = Math.floor(Math.random() * 10) + 1; // losuje 1-10
+  actualTaskNumber = 1;  
+  const hash = await sha256("Stacja " + actualTaskNumber);
+    let pageAdress = hash + ".html";
+    
+    window.location.assign(`${pageAdress}`);
+}
+
+async function sha256(message) {
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); 
+    return hashHex;
 }
