@@ -41,6 +41,12 @@ input[type="text"] {
   border-radius: 6px;
 }
 
+input[type="password"]
+{
+  width: 200px;
+  height: 30px;  
+}
+
 button {
   padding: 10px 20px;
   font-size: 16px;
@@ -142,3 +148,4 @@ button:hover {
   color: rgb(148, 2, 2);
   padding: 8px;
 }
+

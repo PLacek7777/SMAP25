@@ -16,21 +16,21 @@ const divmap = document.getElementById("divmap");
 if (siteId != "menu") {
   
   //Wczytanie pliku json
-  fetch(`media/questions-${siteId}.json`)
-  .then(response => response.json())
-  .then(data => {
-    questions = data["questions"]; //Pytań
-    tips = data["tips"]; //Zakończenia
-    if(document.cookie.split(` ${siteId}=`).pop().split(";").shift() == 1){
-      end();
-    }
-    showQuestion(); //Pokazuje pierwsze pytanie danej stacji
-  })
-  //Error wczytywania
-  .catch(error => {
-    console.error("Błąd podczas ładowania pytań:", error);
-    questionElement.textContent = "Nie udało się wczytać danych.";
-  });
+  // fetch(`media/questions-${siteId}.json`)
+  // .then(response => response.json())
+  // .then(data => {
+  //   questions = data["questions"]; //Pytań
+  //   tips = data["tips"]; //Zakończenia
+  //   if(document.cookie.split(` ${siteId}=`).pop().split(";").shift() == 1){
+  //     end();
+  //   }
+  //   showQuestion(); //Pokazuje pierwsze pytanie danej stacji
+  // })
+  // //Error wczytywania
+  // .catch(error => {
+  //   console.error("Błąd podczas ładowania pytań:", error);
+  //   questionElement.textContent = "Nie udało się wczytać danych.";
+  // });
 }
 
 //Jeśli znajduemy się na staji menu wyświetla help
@@ -56,44 +56,44 @@ function end() {
 }
 
 
-function showQuestion() {
-  const q = questions[currentQuestion];
-  try{ //Sprawdzanie tagu pytania
-    switch(q.tag){
-      case "trivia":
-        questionElement.innerHTML = q.text.replace(/\n/g, '<br>'); // Zamienia \n na <br>
-        answerInput.style.display = 'none';
-        checkButton.innerHTML = 'Dalej';
-        checkButton.onclick = checkAnswer;
-        feedback.textContent = '';
-        feedback.style.color = '';
-        break;
-      case "question": 
-        questionElement.innerHTML = `Pytanie: ${q.text.replace(/\n/g, '<br>')}`; // Zamienia \n na <br>
-        answerInput.style.display = 'block';
-        checkButton.innerHTML = 'Sprawdź odpowiedź';
-        checkButton.onclick = checkAnswer;
-        answerInput.value = '';
-        feedback.textContent = '';
-        feedback.style.color = '';
-        break;
-      case "passwd": 
-      questionElement.innerHTML = `${q.text.replace(/\n/g, '<br>')}`; // Zamienia \n na <br>
-      answerInput.placeholder = "Wpisz hasło...";
-      answerInput.style.display = 'block';
-      checkButton.innerHTML = 'Sprawdź hasło';
-      checkButton.onclick = checkPassword;
-      answerInput.value = '';
-      feedback.textContent = '';
-      feedback.style.color = '';
-      break;
-    }
-  }
+// function showQuestion() {
+//   const q = questions[currentQuestion];
+//   try{ //Sprawdzanie tagu pytania
+//     switch(q.tag){
+//       case "trivia":
+//         questionElement.innerHTML = q.text.replace(/\n/g, '<br>'); // Zamienia \n na <br>
+//         answerInput.style.display = 'none';
+//         checkButton.innerHTML = 'Dalej';
+//         checkButton.onclick = checkAnswer;
+//         feedback.textContent = '';
+//         feedback.style.color = '';
+//         break;
+//       case "question": 
+//         questionElement.innerHTML = `Pytanie: ${q.text.replace(/\n/g, '<br>')}`; // Zamienia \n na <br>
+//         answerInput.style.display = 'block';
+//         checkButton.innerHTML = 'Sprawdź odpowiedź';
+//         checkButton.onclick = checkAnswer;
+//         answerInput.value = '';
+//         feedback.textContent = '';
+//         feedback.style.color = '';
+//         break;
+//       case "passwd": 
+//       questionElement.innerHTML = `${q.text.replace(/\n/g, '<br>')}`; // Zamienia \n na <br>
+//       answerInput.placeholder = "Wpisz hasło...";
+//       answerInput.style.display = 'block';
+//       checkButton.innerHTML = 'Sprawdź hasło';
+//       checkButton.onclick = checkPassword;
+//       answerInput.value = '';
+//       feedback.textContent = '';
+//       feedback.style.color = '';
+//       break;
+//     }
+//   }
 
-  finally{
-    console.log("error");
-  }
-}
+//   finally{
+//     console.log("error");
+//   }
+// }
 
 //Zabezpieczenie hasła
 async function hash(tekst) {
@@ -174,7 +174,7 @@ function displayHelp() {
     });
 }
 
-showQuestion();
+// showQuestion();
 
 //---------------------------Dla index.html
 
@@ -195,4 +195,45 @@ async function sha256(message) {
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); 
     return hashHex;
+}
+
+async function showHint() {
+  fetch("media/SzyfrowaneNazwyStacji.json")
+    .then(response => response.json()) // <-- tu nawiasy!
+    .then(data => {
+      let hintDiv = document.getElementById("hint");
+      let btn = document.getElementById("btnShowHint");
+      btn.innerHTML = "";
+
+      hintDiv.innerHTML = data[actualTaskNumber].Hint;
+      document.getElementById("showPassDiv").style.display = "block";
+      document.getElementById("loginbtn").style.display = "block";
+    })
+    .catch(err => console.error("Błąd przy wczytywaniu JSON:", err));
+}
+
+function enterPassword(){
+  let passowrd = document.getElementById("passwordInpt").value;
+  fetch("media/SzyfrowaneNazwyStacji.json")
+  .then(result => result.json())
+  .then(data=>{
+
+    if(passowrd == data[actualTaskNumber].Password)
+      ShowTask();
+    else
+    {
+    if (!document.getElementById("badpassword")) {
+      document.getElementById("wrap").innerHTML +=
+        "<p id='badpassword' style='color:red;font-weight:bold;text-align:center'>❌ Złe Hasło. Spróbuj ponownie</p>";
+    }
+     else
+      document.getElementById("wrap").innerHTML += "";
+    }
+  })
+
+}
+
+function ShowTask()
+{
+  
 }
