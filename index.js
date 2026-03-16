@@ -1,9 +1,11 @@
+const { act } = require("react");
+
 let currentQuestion = 0;
 let questions = [];
 let tips = [];
-let notDoneTasks = ["1","2","3","4","5","6","7","8","9","10"];
+let notDoneTasks = [1,2,3,4,5,6,7,8,9,10];
 let DoneTasks = [];
-let actualTaskNumer = 0;
+let actualTaskNumber = 0;
 let pageAdress = "index.html";
 
 const questionElement = document.getElementById("question");
@@ -180,9 +182,16 @@ function displayHelp() {
 showQuestion();
 
 async function continueToNext() {
-  let actualTaskNumer = Math.floor(Math.random() * 10) + 1; // losuje 1-10
-  actualTaskNumer = 1;
-    const hash = await sha256("Stacja " + actualTaskNumer);
+  
+  while(DoneTasks.includes(actualTaskNumer))
+  {
+    actualTaskNumber = Math.floor(Math.random() * 10) + 1; // losuje 1-10
+  }
+  DoneTasks.push(actualTaskNumber);
+  notDoneTasks.slice(notDoneTasks.find(actualTaskNumber), 1);
+  actualTaskNumber = 1;
+  
+    const hash = await sha256("Stacja " + actualTaskNumber);
     let pageAdress = hash + ".html";
     window.location.href = pageAdress;
 }
