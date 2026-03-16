@@ -1,6 +1,10 @@
 let currentQuestion = 0;
 let questions = [];
 let tips = [];
+let notDoneTasks = ["1","2","3","4","5","6","7","8","9","10"];
+let DoneTasks = [];
+let actualTaskNumer = 0;
+let pageAdress = "index.html";
 
 const questionElement = document.getElementById("question");
 const answerInput = document.getElementById("answer");
@@ -175,12 +179,18 @@ function displayHelp() {
 
 showQuestion();
 
-//---------------------------Dla index.html
-
-//Wskazówka do pierwszej stacji
-function continueToNext() {
-  const text = document.getElementById("text");
-  text.innerHTML = `Oto wskazówka do pierwszej stacji: Na dole schodów. Hasło: Alleluja`;
-  map.style.display = 'block';
-  divmap.style.display = 'block'; 
+async function continueToNext() {
+  let actualTaskNumer = Math.floor(Math.random() * 10) + 1; // losuje 1-10
+  actualTaskNumer = 1;
+    const hash = await sha256("Stacja " + actualTaskNumer);
+    let pageAdress = hash + ".html";
+    window.location.href = pageAdress;
 }
+
+async function sha256(message) {
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); 
+    return  hashHex;
+  }
