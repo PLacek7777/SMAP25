@@ -4,7 +4,8 @@
         "Name": "Stacja 1",
         "Characters":"Szymon Piotr i Andrzej", 
         "Password": "8034",
-        "Hint": ""
+        "Hint": "",
+        "TaskAdress": "15e66171bb9efb190e598e1c95888b318d2a83951816b8f7294ca7ba16fdff8e.html"
     },
     {
         "EncStageName": "720bea2a8db4321639e9c1bdf98e03b9a3772ded3ad867dba8b31f3dbaec6e04",

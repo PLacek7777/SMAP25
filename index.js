@@ -3,6 +3,7 @@ let questions = [];
 let tips = [];
 let DoneTasks = [];
 let actualTaskNumber = 0;
+let taskAdress = 0;
 const questionElement = document.getElementById("question");
 const answerInput = document.getElementById("answer");
 const feedback = document.getElementById("feedback");
@@ -182,8 +183,8 @@ function displayHelp() {
 async function continueToNext() {
   while(DoneTasks.includes(actualTaskNumber))
     actualTaskNumber = Math.floor(Math.random() * 10) + 1; // losuje 1-10
-  actualTaskNumber = 1;  
-  const hash = await sha256("Stacja " + actualTaskNumber);
+    actualTaskNumber = 1;  
+    const hash = await sha256("Stacja " + actualTaskNumber);
     let pageAdress = hash + ".html";
     
     window.location.assign(`${pageAdress}`);
@@ -205,7 +206,7 @@ async function showHint() {
       let btn = document.getElementById("btnShowHint");
       btn.innerHTML = "";
 
-      hintDiv.innerHTML = data[actualTaskNumber].Hint;
+      hintDiv.innerHTML = "<h3 style = 'text-align: center'>Podpowiedź: </h3> " +data[actualTaskNumber].Hint;
       document.getElementById("showPassDiv").style.display = "block";
       document.getElementById("loginbtn").style.display = "block";
     })
@@ -233,7 +234,18 @@ function enterPassword(){
 
 }
 
-function ShowTask()
+async function ShowTask()
 {
-  
-}
+    fetch("media/SzyfrowaneNazwyStacji.json").then(response=>response.json()).then(data =>{
+
+      document.getElementById("hint").innerHTML = "";
+      document.getElementById("showPassDiv").style.display = "none";
+      document.getElementById("loginbtn").style.display = "none";
+      taskAdress = data[actualTaskNumber].TaskAdress;
+      window.location.assign(`${taskAdress}`);
+
+    })
+     
+
+    
+    }
