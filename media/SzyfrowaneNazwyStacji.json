@@ -4,8 +4,7 @@
         "Name": "Stacja 1",
         "Characters":"Szymon Piotr i Andrzej", 
         "Password": "8034",
-        "Hint": "",
-        "TaskAdress": "15e66171bb9efb190e598e1c95888b318d2a83951816b8f7294ca7ba16fdff8e.html"
+        "Hint": ""
     },
     {
         "EncStageName": "720bea2a8db4321639e9c1bdf98e03b9a3772ded3ad867dba8b31f3dbaec6e04",
@@ -17,7 +16,7 @@
     {
         "EncStageName": "827e78e0612c98ff2aab7fcc0bf0bd59df3ae66d9e5adb2d8abc6c52a8ec9e19",
         "Name":"Stacja 3",
-        "Characters": "Paweł (Szaweł)",
+        "Characters": "Paweł - Apostoł Narodów",
         "Password": "2049",
         "Hint": ""
     },

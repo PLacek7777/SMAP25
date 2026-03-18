@@ -1,251 +1,133 @@
-let currentQuestion = 0;
-let questions = [];
-let tips = [];
-let DoneTasks = [];
-let actualTaskNumber = 0;
-let taskAdress = 0;
-const questionElement = document.getElementById("question");
-const answerInput = document.getElementById("answer");
-const feedback = document.getElementById("feedback");
-const modal = document.getElementById('helpModal');
+let actualTaskNumber;
 const siteId = document.body.getAttribute('data-site-id');
-const checkButton = document.getElementById("checkAnswer");
-const map = document.getElementById("map");
-const divmap = document.getElementById("divmap");
+const modal = document.getElementById('helpModal');
 
-//Czy nie znajdujemy się na stacji menu
-if (siteId != "menu") {
-  
-  //Wczytanie pliku json
-  // fetch(`media/questions-${siteId}.json`)
-  // .then(response => response.json())
-  // .then(data => {
-  //   questions = data["questions"]; //Pytań
-  //   tips = data["tips"]; //Zakończenia
-  //   if(document.cookie.split(` ${siteId}=`).pop().split(";").shift() == 1){
-  //     end();
-  //   }
-  //   showQuestion(); //Pokazuje pierwsze pytanie danej stacji
-  // })
-  // //Error wczytywania
-  // .catch(error => {
-  //   console.error("Błąd podczas ładowania pytań:", error);
-  //   questionElement.textContent = "Nie udało się wczytać danych.";
-  // });
-}
-
-//Jeśli znajduemy się na staji menu wyświetla help
-else if (siteId == "menu") {
+// =======================
+// MENU STARTOWE
+// =======================
+if (siteId === "menu") {
   displayHelp();
 }
 
-
-function end() {
-  document.getElementById("question-box").innerHTML = `
-        ✅ <strong>Dotarłeś do końca tej stacji, wyzwanie:</strong><br>
-              ${tips[0].text}<br><br>
-        🔍 <em>Wskazówka:</em><br>
-        ${tips[0].tip}
-      `;
-      document.cookie = `${siteId}=1`;
-      window.addEventListener("beforeunload", event => event.preventDefault());
-      try{
-        map.style.display = 'block';
-        divmap.style.display = 'block';
-      }
-      finally{}
-}
-
-
-// function showQuestion() {
-//   const q = questions[currentQuestion];
-//   try{ //Sprawdzanie tagu pytania
-//     switch(q.tag){
-//       case "trivia":
-//         questionElement.innerHTML = q.text.replace(/\n/g, '<br>'); // Zamienia \n na <br>
-//         answerInput.style.display = 'none';
-//         checkButton.innerHTML = 'Dalej';
-//         checkButton.onclick = checkAnswer;
-//         feedback.textContent = '';
-//         feedback.style.color = '';
-//         break;
-//       case "question": 
-//         questionElement.innerHTML = `Pytanie: ${q.text.replace(/\n/g, '<br>')}`; // Zamienia \n na <br>
-//         answerInput.style.display = 'block';
-//         checkButton.innerHTML = 'Sprawdź odpowiedź';
-//         checkButton.onclick = checkAnswer;
-//         answerInput.value = '';
-//         feedback.textContent = '';
-//         feedback.style.color = '';
-//         break;
-//       case "passwd": 
-//       questionElement.innerHTML = `${q.text.replace(/\n/g, '<br>')}`; // Zamienia \n na <br>
-//       answerInput.placeholder = "Wpisz hasło...";
-//       answerInput.style.display = 'block';
-//       checkButton.innerHTML = 'Sprawdź hasło';
-//       checkButton.onclick = checkPassword;
-//       answerInput.value = '';
-//       feedback.textContent = '';
-//       feedback.style.color = '';
-//       break;
-//     }
-//   }
-
-//   finally{
-//     console.log("error");
-//   }
-// }
-
-//Zabezpieczenie hasła
-async function hash(tekst) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(tekst);
-  const hash = await crypto.subtle.digest("SHA-256", data);
-
-  // Zamiana ArrayBuffer → hex string
-  return Array.from(new Uint8Array(hash))
-    .map(b => b.toString(16).padStart(2, '0'))
-    .join('');
-}
-
-
-function checkAnswer() {
-  const userAnswer = answerInput.value.trim().toLowerCase(); //przycina i obniża udzieloną odpowiedź
-  const correctAnswers = questions[currentQuestion].answers; //pobiera poprawne odpowiedzi
-  const tag = questions[currentQuestion].tag;
-  
-  //sprawdzenie poprawdności odpowiedzi
-  if (correctAnswers.includes(userAnswer) || tag == "trivia") {
-    currentQuestion++;
-    if (currentQuestion < questions.length) {
-      showQuestion(); //pokazanie kolejnego pytania
-    } 
-    else {
-      document.cookie = `${siteId}=1`;
-      end(); //jeśli nie ma już pytań pokaż zakończenie
-    }
-  } 
-  //błędna odpowiedź
-  else {
-    feedback.textContent = "❌ To nie to. Spróbuj ponownie.";
-    feedback.style.color = "#e74c3c";
+// =======================
+// STRONA STACJI / ZADANIA
+// =======================
+if (siteId === "stage" || siteId === "task") {
+  actualTaskNumber = parseInt(localStorage.getItem("taskNumber"));
+  if (!isNaN(actualTaskNumber)) {
+    writeData();
+  } else {
+    console.error("Brak taskNumber w localStorage!");
   }
 }
 
-//sprawdzenie hasła 
-function checkPassword() {
-  const userAnswer = answerInput.value.trim().toLowerCase();
-  const correctAnswers = questions[currentQuestion].answers;
-  const tag = questions[currentQuestion].tag;
-  hash(userAnswer).then(hash => {
-    if(correctAnswers.includes(hash)){
-      currentQuestion++;
-      showQuestion();
-    }
-    //niepoprawne hasło
-    else {
-      feedback.textContent = "❌ To nie to. Spróbuj ponownie.";
-      feedback.style.color = "#e74c3c";
-    }
-  });
+// =======================
+// LOSOWANIE STACJI
+// =======================
+function continueToNext() {
+  actualTaskNumber = Math.floor(Math.random() * 10); // losujemy 0–9
+  localStorage.setItem("taskNumber", actualTaskNumber);
+  window.location.assign("Stage.html");
 }
 
-//pokazuję menu help (to samo co na początku)
-function displayHelp() {
-  fetch("media/help.json")
-  .then(response => response.json())
+// =======================
+// WYŚWIETLANIE DANYCH STACJI
+// =======================
+async function writeData() {
+  try {
+    const response = await fetch("media/SzyfrowaneNazwyStacji.json");
+    const data = await response.json();
+    const station = data[actualTaskNumber];
+    if (!station) return;
+
+    document.title = station.Characters;
+    const el = document.querySelector("#NazwaStacji");
+    if (el) {
+      el.innerHTML = station.Characters + (siteId === "stage" ? " - Szukaj Stacji" : siteId === "task" ? " - Rozwiąż Zadanie" : "");
+    }
+  } catch (err) {
+    console.error("Błąd wczytywania JSON:", err);
+  }
+}
+
+// =======================
+// PODPOWIEDŹ
+// =======================
+function showHint() {
+  fetch("media/SzyfrowaneNazwyStacji.json")
+    .then(res => res.json())
     .then(data => {
-      const helpList = document.getElementById("helpList");
-      helpList.innerHTML = "";
+      const hintDiv = document.getElementById("hint");
+      const btn = document.getElementById("btnShowHint");
+      if (!hintDiv || !btn) return;
 
-      data.forEach(helpItem => {
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `
-          <strong>${helpItem.title}</strong>: ${helpItem.content}`;
-        listItem.style.margin = "10px";
-        helpList.appendChild(listItem);
-      });
+      btn.innerHTML = "";
+      hintDiv.innerHTML = "<h3 style='text-align:center'>Podpowiedź:</h3>" + data[actualTaskNumber].Hint;
 
-      modal.style.display = "block";
-    })
-    .catch(error => {
-      console.error("Error loading help content:", error);
-      const helpList = document.getElementById("helpList");
-      helpList.innerHTML = "<li>Failed to load help content.</li>";
+      const passDiv = document.getElementById("showPassDiv");
+      const loginBtn = document.getElementById("loginbtn");
+      if (passDiv) passDiv.style.display = "block";
+      if (loginBtn) loginBtn.style.display = "block";
     });
 }
 
-// showQuestion();
+// =======================
+// SPRAWDZENIE HASŁA
+// =======================
+function enterPassword() {
+  const password = document.getElementById("passwordInpt")?.value;
+  if (!password) return;
 
-//---------------------------Dla index.html
-
-//Wskazówka do pierwszej stacji
-async function continueToNext() {
-  while(DoneTasks.includes(actualTaskNumber))
-    actualTaskNumber = Math.floor(Math.random() * 10) + 1; // losuje 1-10
-    actualTaskNumber = 1;  
-    const hash = await sha256("Stacja " + actualTaskNumber);
-    let pageAdress = hash + ".html";
-    
-    window.location.assign(`${pageAdress}`);
-}
-
-async function sha256(message) {
-    const msgBuffer = new TextEncoder().encode(message);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); 
-    return hashHex;
-}
-
-async function showHint() {
   fetch("media/SzyfrowaneNazwyStacji.json")
-    .then(response => response.json()) // <-- tu nawiasy!
+    .then(res => res.json())
     .then(data => {
-      let hintDiv = document.getElementById("hint");
-      let btn = document.getElementById("btnShowHint");
-      btn.innerHTML = "";
-
-      hintDiv.innerHTML = "<h3 style = 'text-align: center'>Podpowiedź: </h3> " +data[actualTaskNumber].Hint;
-      document.getElementById("showPassDiv").style.display = "block";
-      document.getElementById("loginbtn").style.display = "block";
-    })
-    .catch(err => console.error("Błąd przy wczytywaniu JSON:", err));
+      if (password === data[actualTaskNumber].Password) {
+        ShowTask();
+      } else {
+        if (!document.getElementById("badpassword")) {
+          const wrap = document.getElementById("wrap");
+          wrap.innerHTML += "<p id='badpassword' style='color:red;font-weight:bold;text-align:center'>❌ Złe Hasło</p>";
+        }
+      }
+    });
 }
 
-function enterPassword(){
-  let passowrd = document.getElementById("passwordInpt").value;
+// =======================
+// PRZEJŚCIE DO ZADANIA
+// =======================
+function ShowTask() {
   fetch("media/SzyfrowaneNazwyStacji.json")
-  .then(result => result.json())
-  .then(data=>{
-
-    if(passowrd == data[actualTaskNumber].Password)
-      ShowTask();
-    else
-    {
-    if (!document.getElementById("badpassword")) {
-      document.getElementById("wrap").innerHTML +=
-        "<p id='badpassword' style='color:red;font-weight:bold;text-align:center'>❌ Złe Hasło. Spróbuj ponownie</p>";
-    }
-     else
-      document.getElementById("wrap").innerHTML += "";
-    }
-  })
-
+    .then(res => res.json())
+    .then(data => {
+      const hintDiv = document.getElementById("hint");
+      const passDiv = document.getElementById("showPassDiv");
+      const loginBtn = document.getElementById("loginbtn");
+      if (hintDiv) hintDiv.innerHTML = "";
+      if (passDiv) passDiv.style.display = "none";
+      if (loginBtn) loginBtn.style.display = "none";
+      
+      const taskAdress = data[actualTaskNumber].TaskAdress;
+      window.location.assign(taskAdress);
+    });
 }
 
-async function ShowTask()
-{
-    fetch("media/SzyfrowaneNazwyStacji.json").then(response=>response.json()).then(data =>{
+// =======================
+// POMOC (WSPÓLNA DLA WSZYSTKICH STRON)
+// =======================
+function displayHelp() {
+  fetch("media/help.json")
+    .then(res => res.json())
+    .then(data => {
+      const helpList = document.getElementById("helpList");
+      if (!helpList) return;
 
-      document.getElementById("hint").innerHTML = "";
-      document.getElementById("showPassDiv").style.display = "none";
-      document.getElementById("loginbtn").style.display = "none";
-      taskAdress = data[actualTaskNumber].TaskAdress;
-      window.location.assign(`${taskAdress}`);
-
-    })
-     
-
-    
-    }
+      helpList.innerHTML = "";
+      data.forEach(item => {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${item.title}</strong>: ${item.content}`;
+        li.style.margin = "10px";
+        helpList.appendChild(li);
+      });
+      if (modal) modal.style.display = "block";
+    });
+}

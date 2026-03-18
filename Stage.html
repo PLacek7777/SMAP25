@@ -1,23 +1,25 @@
-<!--Stacja 2-->
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jan</title>
+  <title></title>
   <link rel="icon" href="media/foska-przemyska-100px.png">  
   <link rel="stylesheet" href="index.css">
 </head>
-<body >
+<body data-site-id="stage">
     <a href="https://oaza.przemyska.pl">
         <img src="media/foska-przemyska-z-napisem-300px.png" id="foska" >
     </a>
   <div id="wrap">
+    <h1 id="NazwaStacji"></h1>
+    <p style = "text-align: center; margin: 50px;" id = "btnShowHint"><button onclick="showHint()">Wciśnij po podpowiedź</button></p>
+    <p id="hint"></p>
+    <p ><h3 style = "text-align: center; display: none;" id = 'showPassDiv'>Podaj Hasło:  <input type = "password" id = "passwordInpt"></h3></p>
+    <p style="text-align: center; display: none;" id = "loginbtn"> <button onclick = "enterPassword()">Enter</button></p>
+    
   </div>
-  <div id="divmap">
-    <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d2551.003229525498!2d22.420369711856956!3d50.25452397143666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNTDCsDE1JzE2LjMiTiAyMsKwMjUnMjIuNiJF!5e0!3m2!1spl!2spl!4v1745437202240!5m2!1spl!2spl" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade" loading="lazy"></iframe> <!-- TODO: zmienić na pinezkę -->
-  </div>
+
   <button id="helpButton" onclick="displayHelp()"><strong>?</strong></button>
 
   <div id="helpModal" class="modal">
@@ -30,3 +32,4 @@
   </div>
   <script src="index.js"></script>
 </body>
+</html>
