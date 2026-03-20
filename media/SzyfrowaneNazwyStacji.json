@@ -4,69 +4,79 @@
         "Name": "Stacja 1",
         "Characters":"Szymon Piotr i Andrzej", 
         "Password": "8034",
-        "Hint": ""
+        "Hint": "",
+        "Task": "15e66171bb9efb190e598e1c95888b318d2a83951816b8f7294ca7ba16fdff8e.html"
     },
     {
         "EncStageName": "720bea2a8db4321639e9c1bdf98e03b9a3772ded3ad867dba8b31f3dbaec6e04",
         "Name": "Stacja 2",
         "Characters": "Jan",
         "Password": "3209",
-        "Hint": ""
+        "Hint": "",
+        "Task": "fb9e91ae25d59138d1541cee891d6d15fe17e8a92c5f148357e434bcd52585da.html"
     },
     {
         "EncStageName": "827e78e0612c98ff2aab7fcc0bf0bd59df3ae66d9e5adb2d8abc6c52a8ec9e19",
         "Name":"Stacja 3",
         "Characters": "Paweł - Apostoł Narodów",
         "Password": "2049",
-        "Hint": ""
+        "Hint": "",
+        "Task": "74a6a7b04b72c9ec0d18d359600ba30a6b8a0edd97dbcd771ae1d8634cedba3f.html"
     },
     {
         "EncStageName": "2b85099533a44aa7d07537e53262483df0daaf23b0def5f53f3b7d8537c21c03",
         "Name":"Stacja 4",
         "Characters": "Nikodem",
         "Password": "6067",
-        "Hint": ""
+        "Hint": "",
+        "Task": "1cadfa40fb798d655cf1c497ce2056724f006784d3c7d8e80f565fb6bb454c3f.html"
     },
     {
         "EncStageName": "2c734dcd766a2c87cec92629e2a47f6e4466133e7649d5d34397639fc1cb3ab5",
         "Name":"Stacja 5",
         "Characters": "Bartłoimej",
         "Password": "9307",
-        "Hint": ""
+        "Hint": "",
+        "Task": "03b5851a2057effe83539056195560cbb2740a9954b1fb93fa3ba50ab390897e.html"
     },
     {
         "EncStageName": "be3c9375cbdf6294fa7ee081e7f06e6d09d705fe63a6d0e40f1a68717a9cfae1",
         "Name":"Stacja 6",
         "Characters": "Samarytanka",
         "Password": "2461",
-        "Hint": ""
+        "Hint": "",
+        "Task": "797b07d42cfe95acb878cf36ade6c9200d7e4f2042c53b759f5e4da00c4975f2.html"
     },
     {
         "EncStageName": "2353288294477d9494230e1cfc3e2253702423feb7aedaec138480ac8ffd0b6a",
         "Name":"Stacja 7",
         "Characters": "Niewidomy od urodzenia",
         "Password": "1290",
-        "Hint": ""
+        "Hint": "",
+        "Task": "3a75919cae03aae91d777d66e8e342dc0060c52209f2c1ab7a51880853455746.html"
     },
     {
         "EncStageName": "5025265ceb518cb623726ac0b5dde18c8d363b410e056e9ef8717d5cafda0739",
         "Name":"Stacja 8",
         "Characters": "Marta, Maria, Zebedeusz",
         "Password": "8371",
-        "Hint": ""
+        "Hint": "",
+        "Task": "a7d29c9d01c06de16be288b6d2806a88d0048f5e3a2eee0d4ab1bbde16efe1db"
     },
     {
         "EncStageName": "85e421900c3b6fbf15dbb70caa73bdf59ed3e19755c543c03dd0209d8c54ea08",
         "Name": "Stacja 9",
         "Characters": "Jan Chrzciciel",
         "Password": "2137",
-        "Hint": ""
+        "Hint": "",
+        "Task": "814e98f7c2e9780067aac4ee3eebbf121820044adb91b034f6f1266afd73e63d.html"
     },
     {
         "EncStageName": "06edb6fc16e9c5e0c895b3c69574c3a0adc294597a4865d1053acac949941863",
         "Name": "Stacja 10",
         "Characters": "Zacheusz",
         "Password": "6767",
+        "Task": "c8eb7965e049583a4eaacc8561e05281d60a1719a36027c38381d338273ae1f2.html",
         "Hint": ""
     }
 ]
