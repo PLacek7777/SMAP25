@@ -1,0 +1,195 @@
+<!--Stacja 9-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
+</head>
+<body data-site-id = "taskContent">
+    <div id="warp">
+        <div id="TaskName">Rozwiąż Wykreślankę</div>
+        <div id="taskContent">
+            <div id="description">Jednym z pierwszych przyjaciół Jezusa Chrystusa był Jan Chrzciciel - ostatni prorok Starego Testamentu. Jan zasłynął z tego że chrzcił ludzi i wzywał ich do nawrócenia. Żeby poznać go bliżej znajdźcie i wykreślcie 8 słów opisujących go. Ogromną pomocą będzie dla was 3 rozdział Ewangelii według św. Mateusza.</div>
+            <div id="wordsearchInfo">
+                <p>(Hasła mogą być umieszczone w dowolnym kierunku)  Znalezione <span id="foundCount">0</span>/<span id="totalWords">8</span> słów</p>
+                <p id="puzzleFeedback" style="color:#de5500;font-weight:bold;"></p>
+            </div>
+            <div id="wordsearch"></div>
+            <div id="wordListContainer">
+                <strong>Słowa do znalezienia:</strong>
+                <ul id="wordList"></ul>
+            </div>
+            <div id="wordsearchControls" style="text-align:center; margin-top: 10px;">
+                <button id="clearSelection">Wyczyść wybór</button>
+                <button id="submitBtn">Zatwierdź</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function() {
+            const wordsToFind = [
+                'JORDAN',
+                'CHRZEST',
+                'CHRZCICIEL',
+                'PROROK',
+                'NAWROCENIE',
+                'WODA',
+                'MESJASZ',
+                'LAMPA'
+            ];
+
+            const grid = 
+            [
+['J','O','R','D','A','N','S','P','R','O','R','O'],
+['Z','M','L','M','N','O','P','Q','R','S','K','T'],
+['C','A','E','C','D','E','F','G','H','I','O','U'],
+['H','V','W','S','Y','Z','A','B','C','D','R','V'],
+['R','E','S','J','J','S','Z','L','M','N','O','W'],
+['Z','F','G','H','I','A','K','L','M','N','R','X'],
+['E','O','P','Q','R','S','S','U','V','W','P','Y'],
+['S','T','U','V','W','X','Y','Z','A','B','Z','Z'],
+['T','C','H','R','Z','C','I','C','I','E','L','A'],
+['N','A','W','R','O','C','E','N','I','E','S','Z'],
+['O','R','P','R','O','P','R','O','A','M','P','L'],
+['W','O','D','A','L','A','M','P','A','R','O','K']
+];
+
+            const wordsearch = document.getElementById('wordsearch');
+            const wordList = document.getElementById('wordList');
+            const foundCountEl = document.getElementById('foundCount');
+            const totalWordsEl = document.getElementById('totalWords');
+            const puzzleFeedback = document.getElementById('puzzleFeedback');
+            const clearBtn = document.getElementById('clearSelection');
+
+            let selectionStart = null;
+            let selectedCells = [];
+            const foundWords = new Set();
+
+            totalWordsEl.innerText = wordsToFind.length;
+            wordsToFind.forEach(word => {
+                const li = document.createElement('li');
+                li.id = 'word-' + word;
+                li.textContent = word;
+                wordList.appendChild(li);
+            });
+
+            function renderGrid() {
+                const table = document.createElement('table');
+                table.className = 'wordsearch-grid';
+                grid.forEach((row, r) => {
+                    const tr = document.createElement('tr');
+                    row.forEach((letter, c) => {
+                        const td = document.createElement('td');
+                        td.dataset.row = r;
+                        td.dataset.col = c;
+                        td.textContent = letter;
+                        td.addEventListener('click', () => handleCellClick(td));
+                        tr.appendChild(td);
+                    });
+                    table.appendChild(tr);
+                });
+                wordsearch.appendChild(table);
+            }
+
+            function resetSelection() {
+                selectedCells.forEach(cell => cell.classList.remove('cell-selected'));
+                selectedCells = [];
+                selectionStart = null;
+                puzzleFeedback.textContent = '';
+            }
+
+            function setFound(pathCells) {
+                pathCells.forEach(cell => {
+                    cell.classList.remove('cell-selected');
+                    cell.classList.add('cell-found');
+                });
+            }
+
+            function markWord(word) {
+                const li = document.getElementById('word-' + word);
+                if (li && !li.classList.contains('word-found')) {
+                    li.classList.add('word-found');
+                    li.style.textDecoration = 'line-through';
+                }
+            }
+
+            function pathBetween(start, end) {
+                const r1 = Number(start.dataset.row);
+                const c1 = Number(start.dataset.col);
+                const r2 = Number(end.dataset.row);
+                const c2 = Number(end.dataset.col);
+                const dr = Math.sign(r2 - r1);
+                const dc = Math.sign(c2 - c1);
+
+                const steps = Math.max(Math.abs(r2 - r1), Math.abs(c2 - c1));
+                if (steps === 0) return null;
+
+                if (dr !== 0 && dc !== 0 && Math.abs(r2 - r1) !== Math.abs(c2 - c1)) {
+                    return null;
+                }
+
+                const path = [];
+                for (let i = 0; i <= steps; i++) {
+                    const rr = r1 + i * dr;
+                    const cc = c1 + i * dc;
+                    const td = wordsearch.querySelector(`td[data-row='${rr}'][data-col='${cc}']`);
+                    if (!td) return null;
+                    path.push(td);
+                }
+                return path;
+            }
+
+            function handleCellClick(cell) {
+                if (cell.classList.contains('cell-found')) return;
+
+                if (!selectionStart) {
+                    selectionStart = cell;
+                    cell.classList.add('cell-selected');
+                    selectedCells = [cell];
+                    return;
+                }
+
+                const path = pathBetween(selectionStart, cell);
+                if (!path) {
+                    puzzleFeedback.textContent = 'Wybierz prostą linię (poziomą, pionową lub ukośną 45°).';
+                    resetSelection();
+                    return;
+                }
+
+                path.forEach(c => c.classList.add('cell-selected'));
+                selectedCells = path;
+
+                const word = path.map(c => c.textContent).join('');
+                const reversed = word.split('').reverse().join('');
+                const foundWord = wordsToFind.find(w => w === word || w === reversed);
+
+                if (foundWord) {
+                    if (foundWords.has(foundWord)) {
+                        puzzleFeedback.textContent = `Słowo ${foundWord} już wykreślone.`;
+                        path.forEach(c => c.classList.remove('cell-selected'));
+                    } else {
+                        foundWords.add(foundWord);
+                        setFound(path);
+                        markWord(foundWord);
+                        foundCountEl.innerText = foundWords.size;
+                        puzzleFeedback.textContent = `Znakomicie! Znaleziono: ${foundWord}`;
+                    }
+                } else {
+                    puzzleFeedback.textContent = `To nie jest poprawne słowo (${word}). Spróbuj jeszcze raz.`;
+                    path.forEach(c => c.classList.remove('cell-selected'));
+                }
+
+                selectionStart = null;
+                selectedCells = [];
+            }
+
+            clearBtn.addEventListener('click', resetSelection);
+
+            renderGrid();
+        })();
+    </script>
+</body>
+</html>

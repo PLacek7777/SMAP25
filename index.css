@@ -150,16 +150,21 @@ button:hover {
   color: rgb(148, 2, 2);
   padding: 8px;
 }
-body
+
+#wrap
 {
-  overflow: hidden;
+  overflow: visible;
 }
 iframe {
    width: 100%;
+   min-height: 0;
+   max-width: 100%;
    background-color: #d2f8ffcd;
    border: none;
-   margin: none;
-   padding: none;
+   margin: 0;
+   padding: 0;
+   overflow: visible;
+   display: block;
 }
 #TaskName
 {
@@ -175,4 +180,97 @@ iframe {
 .question
 {
   margin: 20px;
+}
+#MorseCode
+{
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 20px;
+}
+#zaszyfrowaneHaslo
+{
+  font-size: 30px;
+  margin: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
+}
+#inputHaslo
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 30px;
+  text-align: center;
+}
+.wordsearch-table
+{
+  margin: 12px auto;
+  border-collapse: collapse;
+  user-select: none;
+}
+.wordsearch-table td
+{
+  width: 36px;
+  height: 36px;
+  border: 1px solid #0f4f7f;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+.wordsearch-table td.emptyCell
+{
+  background-color: #1368c3;
+  cursor: default;
+  border: 1px solid black;
+}
+.wordsearch-table td.spaceCell
+{
+  background-color: #1fac31;
+  cursor: default;
+  border: 1px solid black;
+}
+.wordsearch-table td {
+  margin: 12px auto;
+  border-collapse: collapse;
+  user-select: none;
+  cursor:text;
+}
+.wordsearch-table td:hover {
+  background-color: #f0f0f0;
+}
+.wordsearch-table td.emptyCell:hover
+{
+  background-color: #1368c3;
+}
+
+.wordsearch-grid td {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #0f4f7f;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.wordsearch-grid td.cell-selected {
+  background-color: #f7f34c;
+  color: #000;
+}
+
+.wordsearch-grid td.cell-found {
+  background-color: #4dbf4d;
+  color: #000;
+}
+
+#wordList li.word-found {
+  text-decoration: line-through;
+  color: #555;
 }

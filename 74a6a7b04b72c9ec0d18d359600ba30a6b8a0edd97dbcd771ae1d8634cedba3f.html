@@ -1,0 +1,208 @@
+<!--Stacja 3-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
+</head>
+<body data-site-id = "taskContent">
+    <div id="warp">
+        <div id="TaskName">Rozwiąż Krzyżówkę</div>
+        <div id="taskContent">
+            <div id="description">Może i Paweł nie spotkał Jezusa na ziemi, ale stał się jego wiernym uczniem. Nawrócił się podczas drogi do Damaszku, kiedy to stracił wzrok. Żeby odzyskać wzrok musiał się udać do pewnego ucznia. Po nawróceniu głosił Ewangelię nawet w więzieniu pisząc listy. Rozwiąż krzyżówkę, a dowiesz się jak na imię miał uczeń do którego musiał pójść Paweł.</div>
+           <div id="zasadyKrzyzowki">
+            <h3>Zasady Krzyżówki</h3>
+            <ul>
+                <li>Żeby zakończyć grę, trzeba wpisać poprawne hasło w polu pod krzyżówką.</li>
+                <li>Różowe pola oznaczaja pola z hasłem w pionie.</li>
+                <li>Jasno niebieskie pola oznaczają przerwe</li>
+                <li>Hasła krzyżówki nie sa sprawdzane ale zapisywanie ich pomoże ci rozwiazać ta krzyzówkę</li>
+                <li><strong>Powodzenia!</strong></li>
+            
+            </ul>
+           </div>
+           
+            <div id="wordsearch"></div>
+            <div id="wordListContainer">
+                
+            </div>
+
+
+            <div id="opisyHasel">
+                <h3>Hasła do Odgadnięcia</h3>
+                <ol>
+                    <li>Pojęcie z geografii, które oznacza jednostkę administracyjną, która zrzesza mniejsze jednostki terytorialne.</li>
+                    <li>Miejscowość w jakiej odbywa się tegoroczny SMAP.</li>
+                    <li>Uporządkowany zbiór liter. W Polsce składa się z 23 spółgłosek i 9 samogłosek.</li>
+                    <li>Święto, które obchodziliśmy w ostatnią niedzielę.</li>
+                    <li>Działanie matematyczne polegające na sumowaniu conajmniej dwóch cyfr lub liczb.</li>
+                    <li>Przedmiot szkolny. W dosłownym tłumaczeniu z języka łacińskiego “nauka o życiu”.</li>
+                    <li>Najważniejsza księga w chrześcijaństwie.</li>
+                    <li>Główna część zdania informuje o czynności, stanu lub zachowania podmiotu.</li>
+                </ol>
+            </div>
+            <div id="wpiszHaslo">
+                <input type="text" id="hasloInput" placeholder="Wpisz hasło...">
+                <button id="submitBtn">Sprawdź</button>
+                <button id="clearKrzyzowkaButton">Wyczyść</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+    (function(){
+        const wordsToFind = ["KRAJ", "RYMANÓW","ALFABET","WIELKANOC","DODAWANIE","BIOLOGIA","PISMO ŚWIĘTE", "ORZECZENIE"];
+        const haslo = "ANANIASZ";
+
+        const grid = [
+            ["X","X","X","X","X","X","K","R","A","J","X","X","X","X","X","X","X","X","X","X"],
+            ["X","X","X","X","R","Y","M","A","N","Ó","W","X","X","X","X","X","X","X","X","X"],
+            ["X","X","X","X","X","A","L","F","A","B","E","T","X","X","X","X","X","X","X","X"],
+            ["X","X","W","I","E","L","K","A","N","O","X","X","X","X","X","X","X","X","X","X"],
+            ["X","D","O","D","A","W","A","N","I","E","X","X","X","X","X","X","X","X","X","X"],
+            ["X","B","I","O","L","O","G","I","A","X","X","X","X","X","X","X","X","X","X","X"],
+            ["X","X","X","X","X","X","P","I","S", "M", "O", " ", "Ś","W","I", "Ę", "T", "E","X","X"],
+            ["X","X","X","O","R","Z","E","C","Z","E","N","I","E","X","X","X","X","X","X","X"]
+        ];
+
+       document.querySelector('#clearKrzyzowkaButton').addEventListener('click', () => {
+            const cells = document.querySelectorAll('#wordsearch td');
+            cells.forEach(cell => {
+                if (!cell.classList.contains('emptyCell')) {
+                    cell.textContent = '';
+                }
+            });
+            document.querySelector('#hasloInput').value = '';
+        });
+        const wordsearch = document.getElementById('wordsearch');
+        let selectedRow = [];
+        const foundWords = new Set();
+        const totalWordsEl = 8;
+
+        let selectedCell = null;
+
+        totalWordsEl.innerHTML = wordsToFind.length;
+        wordsToFind.forEach(word => {
+            const li = document.createElement('li');
+            li.id = "word"+word;
+            li.textContent = word;
+        }); 
+
+        function renderGrid() {
+    const table = document.createElement('table');
+    table.className = 'wordsearch-table';
+
+    grid.forEach((row, r) => {
+        const tr = document.createElement('tr');
+
+        row.forEach((cell, c) => {
+            const td = document.createElement('td');
+            td.dataset.row = r;
+            td.dataset.col = c;
+            td.textContent = cell;
+
+            if (cell === "X") {
+                td.textContent = "";
+                td.className = "emptyCell";
+            } else if (cell === " ") {
+                td.className = "emptyCell";
+                td.style.backgroundColor = "lightblue";
+            } else {
+                td.addEventListener('click', () => handleCellClick(td));
+                td.textContent = ""; // jeśli ma być puste na start
+            }
+            if (c ==  "8") {
+                td.style.backgroundColor = "pink";
+            }
+
+            tr.appendChild(td);
+        });
+
+        table.appendChild(tr);
+    });
+
+    const wordsearch = document.getElementById('wordsearch');
+    wordsearch.innerHTML = ""; // czyścimy stare tabele
+    wordsearch.appendChild(table);
+}
+        function handleCellClick(cell)
+        {
+            selectedCell = cell;
+            
+        }
+
+    function handleCellClick(td) {
+    // usuwamy zaznaczenie z poprzedniej komórki
+    if (selectedCell) {
+        selectedCell.classList.remove('selected');
+    }
+
+    selectedCell = td;
+    td.classList.add('selected');
+}
+
+// funkcja do przejścia do kolejnej "normalnej" komórki
+function selectNextCell() {
+    if (!selectedCell) return;
+
+    let row = parseInt(selectedCell.dataset.row);
+    let col = parseInt(selectedCell.dataset.col);
+
+    while (true) {
+        col += 1; // przesuwamy w prawo
+
+        // jeśli koniec wiersza, przechodzimy do następnego wiersza
+        if (col >= grid[row].length) {
+            col = 0;
+            row += 1;
+        }
+
+        // jeśli koniec tabeli, wychodzimy
+        if (row >= grid.length) return;
+
+        const nextCell = document.querySelector(`td[data-row="${row}"][data-col="${col}"]`);
+
+        // jeśli komórka istnieje i nie jest .emptyCell, zaznaczamy ją
+        if (nextCell && !nextCell.classList.contains('emptyCell')) {
+            handleCellClick(nextCell);
+            return; // znaleźliśmy i zaznaczyliśmy kolejną komórkę
+        }
+        // jeśli jest .emptyCell, pętla będzie szukać dalej
+    }
+}
+
+        function writeLetter(letter)
+        {
+            if(selectedCell != null)
+            {
+                selectedCell.innerHTML = letter;
+                selectNextCell();
+            }
+        }
+
+        renderGrid();
+
+     
+    
+    document.addEventListener('keydown', (event) => {
+        const key = event.key;
+        if( key >= 'a' && key <= 'Z')
+        {
+            writeLetter(key.toUpperCase());
+        }
+    });
+
+        
+
+
+
+
+
+    })();
+</script>    
+
+</body>
+</html>

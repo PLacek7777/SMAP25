@@ -36,7 +36,7 @@ function continueToNext() {
   while(DoneTasks.includes(actualTaskNumber) || actualTaskNumber === undefined) {
     actualTaskNumber = Math.floor(Math.random() * 10); // losujemy 0–9
   }
-  actualTaskNumber = 5;
+  actualTaskNumber = 2;
   localStorage.setItem("taskNumber", actualTaskNumber);
   window.location.assign("Stage.html");
 }
@@ -142,51 +142,115 @@ function displayHelp() {
     });
 }
 
-async function displayTask()
-{
-    const resp = await fetch("media/SzyfrowaneNazwyStacji.json");
-    const data = await resp.json();
+function adjustIframeHeight(iframe, attempt = 0) {
+  if (!iframe || !iframe.contentWindow || !iframe.contentWindow.document) return;
 
-    const iframe = document.querySelector("#taskIframe");
-    iframe.src = data[actualTaskNumber].Task;
-    
-    iframe.onload = () => {
-      const doc = iframe.contentWindow.document;
-      doc.body.style.backgroundColor = 'transparent';
-      doc.body.style.margin = '0';
-      const warp = doc.getElementById('warp');
-      if (warp) warp.style.margin = '20px 0';
+  try {
+    const doc = iframe.contentWindow.document;
+    const body = doc.body;
+    const html = doc.documentElement;
 
-      // Add event listener to submit button
-      const submitBtn = doc.getElementById('submitBtn');
-      if (submitBtn) {
-        // Wybierz odpowiednią funkcję sprawdzającą na podstawie numeru zadania
-        if (actualTaskNumber === 5) {
-          // Stacja 6
-          submitBtn.onclick = checkStation6;
-        } else {
-          // Domyślna funkcja dla innych zadań
-          submitBtn.onclick = () => {
-            alert('Funkcja sprawdzająca dla tego zadania nie jest jeszcze zaimplementowana.');
-          };
-        }
-      }
-      
-      iframe.style.height = doc.documentElement.scrollHeight + "px";
-    };
+    const bodyHeight = Math.max(body.scrollHeight, body.offsetHeight, body.clientHeight);
+    const htmlHeight = Math.max(html.scrollHeight, html.offsetHeight, html.clientHeight);
+    const newHeight = Math.max(bodyHeight, htmlHeight);
+
+    if (newHeight > 0) {
+      iframe.style.height = newHeight + "px";
+    } else {
+      iframe.style.height = "auto";
+    }
+
+    if (attempt < 12) {
+      // sprawdź ponownie po krótkim czasie, bo niektóre elementy mogą się dopiero pojawić (grafiki, czcionki)
+      setTimeout(() => adjustIframeHeight(iframe, attempt + 1), 150);
+    }
+  } catch (e) {
+    console.warn('Cannot adjust iframe height yet:', e);
+  }
+}
+
+async function displayTask() {
+  const resp = await fetch("media/SzyfrowaneNazwyStacji.json");
+  const data = await resp.json();
+
+  const iframe = document.querySelector("#taskIframe");
+  iframe.src = data[actualTaskNumber].Task;
 }
 
 function resizeIframe() {
   const iframe = document.getElementById("taskIframe");
+  if (!iframe) return;
 
-  iframe.onload = () => {
-    const doc = iframe.contentWindow.document;
-    doc.body.style.backgroundColor = 'transparent';
-    doc.body.style.margin = '0';
-    const warp = doc.getElementById('warp');
-    if (warp) warp.style.margin = '20px 0';
-    iframe.style.height = doc.documentElement.scrollHeight + "px";
+  const onIframeLoad = () => {
+    try {
+      const doc = iframe.contentWindow.document;
+      doc.body.style.backgroundColor = 'transparent';
+      doc.body.style.margin = '0';
+      doc.body.style.height = 'auto';
+      doc.documentElement.style.height = 'auto';
+      const warp = doc.getElementById('warp');
+      if (warp) warp.style.margin = '20px 0';
+
+      setupTaskSubmitButton(doc);
+      adjustIframeHeight(iframe);
+
+      const observer = new MutationObserver(() => adjustIframeHeight(iframe));
+      observer.observe(doc.documentElement || doc.body, { childList: true, subtree: true, attributes: true });
+    } catch (error) {
+      console.warn('Iframe load handler error:', error);
+    }
   };
+
+  iframe.addEventListener('load', onIframeLoad);
+
+  window.addEventListener('resize', () => {
+    adjustIframeHeight(iframe);
+  });
+}
+
+function setupTaskSubmitButton(doc) {
+  const submitBtn = doc.getElementById('submitBtn');
+  if (!submitBtn) return;
+  
+  if(actualTaskNumber === 0) {
+    submitBtn.onclick = checkStation1;
+  }
+  else if (actualTaskNumber === 2) {
+    submitBtn.onclick = checkStation3;
+  }
+  else if (actualTaskNumber === 5) {
+    submitBtn.onclick = checkStation6;
+  }
+  else if (actualTaskNumber === 6) {
+    submitBtn.onclick = checkStation7;
+  } else if (actualTaskNumber === 7) {
+    submitBtn.onclick = checkStation8;
+  } 
+  else if (actualTaskNumber === 8) {
+    submitBtn.onclick = checkStation9;
+  }
+  else {
+    submitBtn.onclick = () => {
+      alert('Funkcja sprawdzająca dla tego zadania nie jest jeszcze zaimplementowana.');
+    };
+  }
+}
+
+function checkStation9() {
+  const iframe = document.getElementById("taskIframe");
+  if (!iframe || !iframe.contentWindow) return;
+
+  const doc = iframe.contentWindow.document;
+  const foundCount = Number(doc.getElementById('foundCount')?.innerText || 0);
+  const totalWords = Number(doc.getElementById('totalWords')?.innerText || 0);
+
+  if (foundCount === totalWords && totalWords > 0) {
+    alert('Brawo! Wykreślanka rozwiązana poprawnie. Możesz przejść dalej.');
+    DoneTasks.push(actualTaskNumber);
+    continueToNext();
+  } else {
+    alert(`Wykreślono ${foundCount}/${totalWords} słów. Kontynuuj szukanie i spróbuj ponownie.`);
+  }
 }
 
 // ===========================
@@ -197,12 +261,85 @@ function resizeIframe() {
 function checkStation6() {
   const iframe = document.getElementById("taskIframe");
   if (!iframe || !iframe.contentWindow) return;
-  
+
   const doc = iframe.contentWindow.document;
   const q1 = doc.querySelector('input[name="question1"]:checked')?.value;
   const q2 = doc.querySelector('input[name="question2"]:checked')?.value;
-  
+
   if (q1 === 'b' && q2 === 'c') {
+    alert('Poprawna odpowiedź! Możesz przejść dalej.');
+    DoneTasks.push(actualTaskNumber);
+    continueToNext();
+  } else {
+    alert('Zła odpowiedź. Spróbuj ponownie.');
+  }
+}
+
+// Stacja 7 - Quiz
+function checkStation7() {
+  const iframe = document.getElementById("taskIframe");
+  if (!iframe || !iframe.contentWindow) return;
+
+  const doc = iframe.contentWindow.document;
+  const q1 = doc.querySelector('input[name="question1"]:checked')?.value;
+  const q2 = doc.querySelector('input[name="question2"]:checked')?.value;
+
+  if (q1 === 'b' && q2 === 'c') {
+    alert('Poprawna odpowiedź! Możesz przejść dalej.');
+    DoneTasks.push(actualTaskNumber);
+    continueToNext();
+  } else {
+    alert('Zła odpowiedź. Spróbuj ponownie.');
+  }
+}
+
+function checkStation8()
+{
+  const iframe = document.getElementById("taskIframe");
+  if (!iframe || !iframe.contentWindow) return;
+
+  const doc = iframe.contentWindow.document;
+  const answerInput = doc.getElementById('hasloInput');
+  if (!answerInput) return;
+  if(answerInput.value.trim().toLowerCase() === 'ja was powoluje') {
+    alert('Poprawna odpowiedź! Możesz przejść dalej.');
+    DoneTasks.push(actualTaskNumber);
+    continueToNext();
+  } else {
+    alert('Zła odpowiedź. Spróbuj ponownie.');
+  }
+}
+
+function checkStation1()
+{
+
+const iframe = document.getElementById("taskIframe");
+if (!iframe || !iframe.contentWindow) return;
+const doc = iframe.contentWindow.document;
+const q1 = doc.querySelector('input[name="question1"]:checked')?.value;
+const q2 = doc.querySelector('input[name="question2"]:checked')?.value;
+const q3 = doc.querySelector('input[name="question3"]:checked')?.value;
+const q4 = doc.querySelector('input[name="question4"]:checked')?.value;
+const q5 = doc.querySelector('input[name="question5"]:checked')?.value;
+const q6 = doc.querySelector('input[name="question6"]:checked')?.value;
+
+if(q1 === 'b' && q2 === 'a' && q3 === 'a' && q4 === 'a' && q5 === 'b' && q6 === 'a') {
+  alert('Poprawna odpowiedź! Możesz przejść dalej.');
+  DoneTasks.push(actualTaskNumber);
+  continueToNext();
+}
+else {
+  alert('Zła odpowiedź. Spróbuj ponownie.');
+}
+}
+function checkStation3()
+{
+  const iframe = document.getElementById("taskIframe");
+  if (!iframe || !iframe.contentWindow) return;
+  const doc = iframe.contentWindow.document;
+  const answerInput = doc.getElementById('hasloInput');
+  if (!answerInput) return;
+  if(answerInput.value.trim().toUpperCase() == "ANANIASZ") {
     alert('Poprawna odpowiedź! Możesz przejść dalej.');
     DoneTasks.push(actualTaskNumber);
     continueToNext();
