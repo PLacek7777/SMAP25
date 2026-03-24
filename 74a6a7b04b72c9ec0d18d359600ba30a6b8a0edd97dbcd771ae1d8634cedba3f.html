@@ -47,7 +47,7 @@
             <div id="wpiszHaslo">
                 <input type="text" id="hasloInput" placeholder="Wpisz hasło...">
                 <button id="submitBtn">Sprawdź</button>
-                <button id="clearKrzyzowkaButton">Wyczyść</button>
+                <button id="clearBtn">Wyczyść</button>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
             ["X","X","X","O","R","Z","E","C","Z","E","N","I","E","X","X","X","X","X","X","X"]
         ];
 
-       document.querySelector('#clearKrzyzowkaButton').addEventListener('click', () => {
+       document.querySelector('#clearBtn').addEventListener('click', () => {
             const cells = document.querySelectorAll('#wordsearch td');
             cells.forEach(cell => {
                 if (!cell.classList.contains('emptyCell')) {
@@ -188,12 +188,13 @@ function selectNextCell() {
      
     
     document.addEventListener('keydown', (event) => {
-        const key = event.key;
-        if( key >= 'a' && key <= 'Z')
-        {
-            writeLetter(key.toUpperCase());
-        }
-    });
+    const key = event.key.toUpperCase();
+    // tylko pojedyncze litery A-Z
+    if (/^[A-Z]$/.test(key)) {
+        writeLetter(key);
+        event.preventDefault(); // blokuje wpisanie znaku w innych polach (opcjonalnie)
+    }
+});
 
         
 
