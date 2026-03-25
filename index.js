@@ -36,7 +36,7 @@ function continueToNext() {
   while(DoneTasks.includes(actualTaskNumber) || actualTaskNumber === undefined) {
     actualTaskNumber = Math.floor(Math.random() * 10); // losujemy 0–9
   }
-  actualTaskNumber = 2;
+  actualTaskNumber = 1;
   localStorage.setItem("taskNumber", actualTaskNumber);
   window.location.assign("Stage.html");
 }
@@ -215,6 +215,10 @@ function setupTaskSubmitButton(doc) {
   if(actualTaskNumber === 0) {
     submitBtn.onclick = checkStation1;
   }
+  else if (actualTaskNumber === 1) {
+    submitBtn.onclick = checkStation2;
+    
+  }
   else if (actualTaskNumber === 2) {
     submitBtn.onclick = checkStation3;
   }
@@ -346,4 +350,33 @@ function checkStation3()
   } else {
     alert('Zła odpowiedź. Spróbuj ponownie.');
   }
+}
+function checkStation2() {
+    const iframe = document.getElementById("taskIframe");
+    if (!iframe || !iframe.contentWindow) return;
+
+    const doc = iframe.contentWindow.document;
+    let correct = true;
+
+    const slots = doc.querySelectorAll(".puzzle-slot");
+
+    for (let i = 0; i < 20; i++) {
+        const slot = slots[i];
+        const slotImg = slot.querySelector("img");
+
+        // Sprawdzamy, czy slot zawiera obrazek i czy ma poprawny src
+        const expectedSrc = `media/Puzzle ${i + 1}.jpg`;
+        if (!slotImg || slotImg.getAttribute('src') !== expectedSrc) {
+            correct = false;
+            break; // Jeśli jeden puzzel jest niepoprawny, nie trzeba sprawdzać dalej
+        }
+    }
+
+    if (correct) {
+        alert('Poprawna odpowiedź! Możesz przejść dalej.');
+        DoneTasks.push(actualTaskNumber);
+        continueToNext();
+    } else {
+        alert('Zła odpowiedź. Spróbuj ponownie.');
+    }
 }

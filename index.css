@@ -1,4 +1,4 @@
-body{
+body {
   background-color: #f0fffe;
   font-family: sans-serif;
   height: 100vh;
@@ -12,7 +12,7 @@ body{
   padding: 20px;
   background-color: #d2f8ffcd;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 #punkt {
@@ -37,15 +37,14 @@ input[type="text"] {
   width: 90%;
   padding: 10px;
   font-size: 16px;
-  margin-bottom   : 20px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
 
-input[type="password"]
-{
+input[type="password"] {
   width: 200px;
-  height: 30px;  
+  height: 30px;
 }
 
 button {
@@ -79,7 +78,7 @@ button:hover {
   border: none;
   padding: 0px;
   border-radius: 50%;
-  cursor: pointer; 
+  cursor: pointer;
   font-size: 20px;
   -webkit-tap-highlight-color: transparent;
 }
@@ -88,7 +87,7 @@ button:hover {
   background-color: #1368c3;
 }
 
-#buttonHolder{
+#buttonHolder {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,7 +101,6 @@ button:hover {
   border: 0;
   width: 90%;
   height: 90%;
-
   pointer-events: none;
 }
 
@@ -114,7 +112,7 @@ button:hover {
   padding: 10px;
   background-color: #d2f8ffcd;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .modal {
@@ -151,44 +149,46 @@ button:hover {
   padding: 8px;
 }
 
-#wrap
-{
+#wrap {
   overflow: visible;
 }
+
 iframe {
-   width: 100%;
-   min-height: 0;
-   max-width: 100%;
-   background-color: #d2f8ffcd;
-   border: none;
-   margin: 0;
-   padding: 0;
-   overflow: visible;
-   display: block;
+  width: 100%;
+  min-height: 0;
+  max-width: 100%;
+  background-color: #d2f8ffcd;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  display: block;
 }
-#TaskName
-{
+
+#TaskName {
   font-weight: bold;
   font-size: 30px;
   margin: 20px;
 }
-.question li
-{
-  list-style-type: none;;
- margin-top: 5px;
+
+.question li {
+  list-style-type: none;
+  ;
+  margin-top: 5px;
 }
-.question
-{
+
+.question {
   margin: 20px;
 }
-#MorseCode
-{
+
+#MorseCode {
   margin-left: 25px;
   margin-right: 25px;
   margin-top: 20px;
 }
-#zaszyfrowaneHaslo
-{
+
+#zaszyfrowaneHaslo {
   font-size: 30px;
   margin: 20px;
   margin-left: auto;
@@ -196,22 +196,22 @@ iframe {
   text-align: center;
   font-weight: bold;
 }
-#inputHaslo
-{
+
+#inputHaslo {
   display: block;
   margin-left: auto;
   margin-right: auto;
   height: 30px;
   text-align: center;
 }
-.wordsearch-table
-{
+
+.wordsearch-table {
   margin: 12px auto;
   border-collapse: collapse;
   user-select: none;
 }
-.wordsearch-table td
-{
+
+.wordsearch-table td {
   width: 36px;
   height: 36px;
   border: 1px solid #0f4f7f;
@@ -222,29 +222,31 @@ iframe {
   cursor: pointer;
   background-color: #ffffff;
 }
-.wordsearch-table td.emptyCell
-{
+
+.wordsearch-table td.emptyCell {
   background-color: #1368c3;
   cursor: default;
   border: 1px solid black;
 }
-.wordsearch-table td.spaceCell
-{
+
+.wordsearch-table td.spaceCell {
   background-color: #1fac31;
   cursor: default;
   border: 1px solid black;
 }
+
 .wordsearch-table td {
   margin: 12px auto;
   border-collapse: collapse;
   user-select: none;
-  cursor:text;
+  cursor: text;
 }
+
 .wordsearch-table td:hover {
   background-color: #f0f0f0;
 }
-.wordsearch-table td.emptyCell:hover
-{
+
+.wordsearch-table td.emptyCell:hover {
   background-color: #1368c3;
 }
 
@@ -273,4 +275,39 @@ iframe {
 #wordList li.word-found {
   text-decoration: line-through;
   color: #555;
+}
+
+/* .puzzle-piece { width: 100px; height: 100px; background-color: #d2f8ffcd; display: inline-block; margin: 5px; cursor: pointer; } */
+#puzzleSolving,
+#puzzle {
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  grid-template-rows: repeat(4, 100px);
+  gap: 5px;
+  width: max-content;
+  /* 🔥 KLUCZ */
+  margin: 20px auto;
+  border: 1px solid #0f4f7f;
+}
+
+.puzzle-slot,
+.puzzle-piece {
+  width: 100px;
+  height: 100px;
+  border: 1px dashed #0f4f7f;
+}
+
+@media screen and (width < 600px) {
+
+  #puzzleSolving,
+  #puzzle {
+    grid-template-columns: repeat(5, 40px);
+    grid-template-rows: repeat(4, 40px);
+  }
+
+  .puzzle-slot,
+  .puzzle-piece {
+    width: 40px;
+    height: 40px;
+  }
 }

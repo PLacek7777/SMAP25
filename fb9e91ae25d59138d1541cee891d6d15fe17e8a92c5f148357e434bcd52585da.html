@@ -1,47 +1,228 @@
 <!--Stacja 2-->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="index.css">
-    <script src="index.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puzzle</title>
+<script src="index.js" defer></script>
+<style>
+    button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #1fac31;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: #1b7540a8;
+}
+ body{
+  background-color: #f0fffe;
+  font-family: sans-serif;
+}
+
+#wrap {
+  max-width: 600px;
+  margin: 15px auto;
+  padding: 20px;
+  background-color: #d2f8ffcd;
+  border-radius: 10px;
+}
+
+#TaskName {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#puzzle {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.puzzle-piece {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  cursor: grab;
+  touch-action: none; /* 🔥 ważne */
+ }
+
+#puzzleSolving,
+#puzzle {
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  grid-template-rows: repeat(4, 100px);
+  gap: 5px;
+  width: max-content;
+  /* 🔥 KLUCZ */
+  margin: 20px auto;
+  border: 1px solid #0f4f7f;
+}
+
+.puzzle-slot,
+.puzzle-piece {
+  width: 100px;
+  height: 100px;
+  border: 1px dashed #0f4f7f;
+}
+
+@media screen and (width < 600px) {
+
+  #puzzleSolving,
+  #puzzle {
+    grid-template-columns: repeat(5, 40px);
+    grid-template-rows: repeat(4, 40px);
+  }
+
+  .puzzle-slot,
+  .puzzle-piece {
+    width: 40px;
+    height: 40px;
+  }
+}
+</style>
 </head>
-<body data-site-id = "taskContent">
-    <div id="warp">
-        <div id="TaskName">Ułóż puzzle</div>
-        <div id="taskContent">
-            <div id="description">Jan był młodym wędrowcem, znanym ze swojej odwagi i wytrwałości. Często przemierzał leśne ścieżki, pomagając innym odnaleźć właściwą drogę. Pewnego dnia, po długiej i męczącej wędrówce, dotarł na niewielkie wzgórze, na którym stał stary, drewniany krzyż.
 
-            Miejsce to było ciche i spokojne. Wiatr delikatnie poruszał gałęziami drzew, a wokół panowała niezwykła cisza. Jan poczuł, że to dobre miejsce na odpoczynek. Usiadł pod krzyżem, zdjął plecak i przez chwilę patrzył w dal, zbierając siły na dalszą drogę.
+<body>
+<div id="wrap">
+  <div id="TaskName">Ułóż puzzle</div>
 
-            Siedząc tam, zauważył, że pod krzyżem leżą porozrzucane kawałki czegoś, co wyglądało jak fragmenty większego obrazka. Jan domyślił się, że to nie przypadek i że rozwiązanie tej zagadki pomoże ruszyć dalej.</div>
-           </div>
-            </div>
-        </div>
-    </div>
+  <div id="puzzle"></div>
+  <div id="puzzleSolving"></div>
+  <button id = "submitBtn" style="display: block; margin: 20px auto;">Sprawdź</button>
+</div>
 
 <script>
-    (function(){
-        const wordsToFind = ["KRAJ", "RYMANÓW","ALFABET","WIELKANOC","DODAWANIE","BIOLOGIA","PISMO ŚWIĘTE", "ORZECZENIE"];
-        const haslo = "ANANIASZ";
+(function() {
 
-        const grid = [
-            ["X","X","X","X","X","X","K","R","A","J","X","X","X","X","X","X","X","X","X","X"],
-            ["X","X","X","X","R","Y","M","A","N","Ó","W","X","X","X","X","X","X","X","X","X"],
-            ["X","X","X","X","X","A","L","F","A","B","E","T","X","X","X","X","X","X","X","X"],
-            ["X","X","W","I","E","L","K","A","N","O","X","X","X","X","X","X","X","X","X","X"],
-            ["X","D","O","D","A","W","A","N","I","E","X","X","X","X","X","X","X","X","X","X"],
-            ["X","B","I","O","L","O","G","I","A","X","X","X","X","X","X","X","X","X","X","X"],
-            ["X","X","X","X","X","X","P","I","S", "M", "O", " ", "Ś", "W","I", "Ę", "T", "E"],
-            ["X","X","X","O","R","Z","E","C","Z","E","N","X","X","X","X","X","X","X","X","X"]
-        ]
+const pieces = [
+ 'media/Puzzle 1.jpg','media/Puzzle 2.jpg','media/Puzzle 3.jpg','media/Puzzle 4.jpg','media/Puzzle 5.jpg',
+ 'media/Puzzle 6.jpg','media/Puzzle 7.jpg','media/Puzzle 8.jpg','media/Puzzle 9.jpg','media/Puzzle 10.jpg',
+ 'media/Puzzle 11.jpg','media/Puzzle 12.jpg','media/Puzzle 13.jpg','media/Puzzle 14.jpg','media/Puzzle 15.jpg',
+ 'media/Puzzle 16.jpg','media/Puzzle 17.jpg','media/Puzzle 18.jpg','media/Puzzle 19.jpg','media/Puzzle 20.jpg'
+];
 
+const puzzleContainer = document.getElementById('puzzle');
+const solvedPuzzle = document.getElementById('puzzleSolving');
 
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
 
-    })
-</script>    
+shuffle(pieces);
+
+// 🔲 tworzenie slotów
+const slots = [];
+for (let i = 0; i < 20; i++) {
+  const slot = document.createElement("div");
+  slot.classList.add("puzzle-slot");
+  slot.dataset.index = i; 
+  solvedPuzzle.appendChild(slot);
+  slots.push(slot);
+}
+
+let currentPiece = null;
+let offsetX = 0;
+let offsetY = 0;
+
+// 🧩 tworzenie puzzli
+pieces.forEach((src) => {
+  const img = document.createElement('img');
+  img.src = src;
+  img.classList.add('puzzle-piece');
+
+  img.addEventListener("mousedown", startDrag);
+  img.addEventListener("touchstart", startDrag);
+
+  puzzleContainer.appendChild(img);
+});
+
+// 🟢 START
+function startDrag(e) {
+  currentPiece = e.target;
+
+  const event = e.touches ? e.touches[0] : e;
+
+  offsetX = event.offsetX || 50;
+  offsetY = event.offsetY || 50;
+
+  document.addEventListener("mousemove", move);
+  document.addEventListener("mouseup", stop);
+
+  document.addEventListener("touchmove", move);
+  document.addEventListener("touchend", stop);
+}
+
+// 🔵 MOVE
+function move(e) {
+  if (!currentPiece) return;
+
+  const event = e.touches ? e.touches[0] : e;
+
+  currentPiece.style.position = "absolute";
+  currentPiece.style.left = (event.clientX - offsetX) + "px";
+  currentPiece.style.top = (event.clientY - offsetY) + "px";
+}
+
+// 🔴 STOP + SNAP
+function stop(e) {
+  document.removeEventListener("mousemove", move);
+  document.removeEventListener("mouseup", stop);
+  document.removeEventListener("touchmove", move);
+  document.removeEventListener("touchend", stop);
+
+  if (!currentPiece) return;
+
+  const event = e.changedTouches ? e.changedTouches[0] : e;
+
+  let closestSlot = null;
+  let minDistance = Infinity;
+
+  slots.forEach(slot => {
+    const rect = slot.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const distance = Math.hypot(
+      event.clientX - centerX,
+      event.clientY - centerY
+    );
+
+    if (distance < minDistance) {
+      minDistance = distance;
+      closestSlot = slot;
+    }
+  });
+
+  const boardRect = solvedPuzzle.getBoundingClientRect();
+  const isInsideBoard =
+    event.clientX >= boardRect.left &&
+    event.clientX <= boardRect.right &&
+    event.clientY >= boardRect.top &&
+    event.clientY <= boardRect.bottom;
+
+  if (isInsideBoard && minDistance < 80) {
+    closestSlot.appendChild(currentPiece);
+  } else {
+    puzzleContainer.appendChild(currentPiece);
+  }
+
+  currentPiece.style.position = "static";
+  currentPiece = null;
+}
+}
+
+)();
+</script>
 
 </body>
 </html>
