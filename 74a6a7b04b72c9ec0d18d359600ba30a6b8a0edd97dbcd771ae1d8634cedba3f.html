@@ -61,7 +61,7 @@
             ["X","X","X","X","X","X","K","R","A","J","X","X","X","X","X","X","X","X","X","X"],
             ["X","X","X","X","R","Y","M","A","N","Ó","W","X","X","X","X","X","X","X","X","X"],
             ["X","X","X","X","X","A","L","F","A","B","E","T","X","X","X","X","X","X","X","X"],
-            ["X","X","W","I","E","L","K","A","N","O","X","X","X","X","X","X","X","X","X","X"],
+            ["X","X","W","I","E","L","K","A","N","O","C","X","X","X","X","X","X","X","X","X"],
             ["X","D","O","D","A","W","A","N","I","E","X","X","X","X","X","X","X","X","X","X"],
             ["X","B","I","O","L","O","G","I","A","X","X","X","X","X","X","X","X","X","X","X"],
             ["X","X","X","X","X","X","P","I","S", "M", "O", " ", "Ś","W","I", "Ę", "T", "E","X","X"],
@@ -128,14 +128,9 @@
     wordsearch.innerHTML = ""; // czyścimy stare tabele
     wordsearch.appendChild(table);
 }
-        function handleCellClick(cell)
-        {
-            selectedCell = cell;
-            
-        }
+        
 
     function handleCellClick(td) {
-    // usuwamy zaznaczenie z poprzedniej komórki
     if (selectedCell) {
         selectedCell.classList.remove('selected');
     }
@@ -185,24 +180,33 @@ function selectNextCell() {
 
         renderGrid();
 
+        
      
     
     document.addEventListener('keydown', (event) => {
-    const key = event.key.toUpperCase();
-    // tylko pojedyncze litery A-Z
-    if (/^[A-Z]$/.test(key)) {
-        writeLetter(key);
-        event.preventDefault(); // blokuje wpisanie znaku w innych polach (opcjonalnie)
+    // jeśli kliknięty jest input → NIE ruszamy nic
+    if (document.activeElement === document.querySelector('#hasloInput')) {
+        return;
+    }
+
+    // jeśli nie ma zaznaczonej komórki → nic nie robimy
+    if (!selectedCell) return;
+
+    const key = event.key;
+
+    // obsługa liter (również polskich)
+    if (key.length === 1 && key.match(/[a-ząćęłńóśźż]/i)) {
+        writeLetter(key.toUpperCase());
+        event.preventDefault();
+    }
+
+    // BACKSPACE usuwa literę
+    if (key === "Backspace") {
+        selectedCell.textContent = "";
+        event.preventDefault();
     }
 });
-
-        
-
-
-
-
-
-    })();
+})();
 </script>    
 
 </body>

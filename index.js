@@ -10,19 +10,27 @@ let DoneTasks = [];
 if (siteId === "menu") {
   displayHelp();
 }
+else if(siteId === "endScreen") {
+  DoneTasks = JSON.parse(localStorage.getItem("DoneTasks")) ?? [];
+  document.getElementById("WykonaneZadania").innerHTML += DoneTasks.map(num => `Stacja ${num + 1}`).join(", ");
+}
 
 // =======================
 // STRONA STACJI / ZADANIA
 // =======================
 if (siteId === "stage" || siteId === "task") {
-  if(siteId === "task")
-  {
-    displayTask();
-    resizeIframe();
-  }
+
   actualTaskNumber = parseInt(localStorage.getItem("taskNumber"));
+
   if (!isNaN(actualTaskNumber)) {
+
+    if(siteId === "task") {
+      displayTask();
+      resizeIframe();
+    }
+
     writeData();
+
   } else {
     console.error("Brak taskNumber w localStorage!");
   }
@@ -33,14 +41,24 @@ if (siteId === "stage" || siteId === "task") {
 // LOSOWANIE STACJI
 // =======================
 function continueToNext() {
-  while(DoneTasks.includes(actualTaskNumber) || actualTaskNumber === undefined) {
-    actualTaskNumber = Math.floor(Math.random() * 10); // losujemy 0–9
-  }
-  actualTaskNumber = 1;
-  localStorage.setItem("taskNumber", actualTaskNumber);
-  window.location.assign("Stage.html");
-}
 
+
+  DoneTasks = JSON.parse(localStorage.getItem("DoneTasks")) ?? [];
+ if (DoneTasks.length >= 10) {
+  window.location.assign("endScreen31244121231.html");
+  }
+  else
+  {
+
+    while(DoneTasks.includes(actualTaskNumber) || actualTaskNumber === undefined) {
+      actualTaskNumber = Math.floor(Math.random() * 10); // losujemy 0–9
+    }
+    localStorage.setItem("taskNumber", actualTaskNumber);
+    DoneTasks.push(actualTaskNumber);
+    localStorage.setItem("DoneTasks", JSON.stringify(DoneTasks));
+    window.location.assign("Stage.html");
+  }
+}
 // =======================
 // WYŚWIETLANIE DANYCH STACJI
 // =======================
@@ -222,6 +240,12 @@ function setupTaskSubmitButton(doc) {
   else if (actualTaskNumber === 2) {
     submitBtn.onclick = checkStation3;
   }
+  else if (actualTaskNumber === 3) {
+    submitBtn.onclick = checkStation4;
+  }
+  else if (actualTaskNumber === 4) {
+    submitBtn.onclick = checkStation5;
+  }
   else if (actualTaskNumber === 5) {
     submitBtn.onclick = checkStation6;
   }
@@ -232,6 +256,9 @@ function setupTaskSubmitButton(doc) {
   } 
   else if (actualTaskNumber === 8) {
     submitBtn.onclick = checkStation9;
+  }
+  else if (actualTaskNumber === 9) {
+    submitBtn.onclick = checkStation10;
   }
   else {
     submitBtn.onclick = () => {
@@ -379,4 +406,41 @@ function checkStation2() {
     } else {
         alert('Zła odpowiedź. Spróbuj ponownie.');
     }
+}
+function checkStation5(isDone)
+{
+   
+if(isDone) {
+     alert('Poprawna odpowiedź! Możesz przejść dalej.');
+        DoneTasks.push(actualTaskNumber);
+        continueToNext();
+  } 
+}
+function checkStation4()
+{
+  
+  const iframe = document.getElementById("taskIframe");
+  if (!iframe || !iframe.contentWindow) alert("blad");
+  const doc = iframe.contentWindow.document;
+  const answerInput = doc.getElementById('hasloInput');
+  if (!answerInput) return;
+  if(answerInput.value.trim().toLowerCase() == 'narodzić się na nowo') {
+    alert('Poprawna odpowiedź! Możesz przejść dalej.');
+    DoneTasks.push(actualTaskNumber);
+    continueToNext();
+  } else {
+    alert('Zła odpowiedź. Spróbuj ponownie.');
+  }
+}
+function checkStation10()
+{
+  location.reload();
+  
+
+    alert('Brawo! Wykreślanka rozwiązana poprawnie. Możesz przejść dalej.');
+    DoneTasks.push(actualTaskNumber);
+    continueToNext();
+
+    alert(`Wykreślono ${foundCount}/${totalWords} słów. Kontynuuj szukanie i spróbuj ponownie.`);
+  
 }

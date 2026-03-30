@@ -1,0 +1,172 @@
+<!--Stacja 10-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
+</head>
+<body data-site-id = "taskContent">
+    <div id="warp">
+        <div id="TaskName">Wygraj w Kółko i krzyżyk</div>
+        <div id="taskContent">
+            <div id="description">Dawno temu, w pewnym mieście, mieszkał człowiek o imieniu Zacheusz. Był bardzo bogaty, ale ludzie go nie lubili, bo zabierał im pieniądze jako poborca podatków. Mimo to w jego sercu było pragnienie czegoś więcej - chciał zobaczyć Jezusa.
+
+Pewnego dnia dowiedział się, że Jezus przechodzi przez jego miasto. Problem był jeden - Zacheusz był niski i nie mógł zobaczyć nic ponad tłumem. Postanowił więc zrobić coś niezwykłego… pobiegł naprzód i wspiął się na drzewo, żeby choć przez chwilę zobaczyć Jezusa.
+
+Teraz musicie udowodnić, że jesteście sprytni i wytrwali tak jak Zacheusz.
+
+Aby pójść dalej śladami Jezusa, musicie wygrać trzy razy w kółko i krzyżyk. Tylko wtedy pokażecie, że potraficie się skupić i nie poddawać - tak jak on, gdy szukał Jezusa.
+
+</div>
+            <div id="gameContainer">
+                <div id="kolej"></div>
+                <div id="gameBoard">
+                    <div class="cell" data-cell-index="0"></div>
+                    <div class="cell" data-cell-index="1"></div>
+                    <div class="cell" data-cell-index="2"></div>
+                    <div class="cell" data-cell-index="3"></div>
+                    <div class="cell" data-cell-index="4"></div>
+                    <div class="cell" data-cell-index="5"></div>
+                    <div class="cell" data-cell-index="6"></div>
+                    <div class="cell" data-cell-index="7"></div>
+                    <div class="cell" data-cell-index="8"></div> 
+                </div>
+    </div>
+    <div id="butttonDiv"></div>
+    <script>
+   const cells = document.querySelectorAll(".cell");
+const kolejDiv = document.getElementById("kolej");
+
+let currentPlayer = "X"; // gracz
+let board = ["", "", "", "", "", "", "", "", ""];
+let gameActive = true;
+let winStreak = 0;
+
+const winConditions = [
+  [0,1,2],
+  [3,4,5],
+  [6,7,8],
+  [0,3,6],
+  [1,4,7],
+  [2,5,8],
+  [0,4,8],
+  [2,4,6]
+];
+
+kolejDiv.innerText = "Twoja tura (X)";
+
+cells.forEach(cell => {
+  cell.addEventListener("click", handleClick);
+});
+
+function handleClick(e) {
+  const index = e.target.dataset.cellIndex;
+
+  if (board[index] !== "" || !gameActive) return;
+
+  makeMove(index, "X");
+
+  if (!gameActive) return;
+
+  kolejDiv.innerText = "Ruch komputera...";
+
+  setTimeout(computerMove, 500);
+}
+
+function makeMove(index, player) {
+  board[index] = player;
+  cells[index].innerText = player;
+  cells[index].classList.add(player.toLowerCase());
+
+  if (checkWin(player)) {
+    if (player === "X") {
+      winStreak++;
+      kolejDiv.innerText = "Wygrane: " + winStreak + "/3";
+    } else {
+      kolejDiv.innerText = "Komputer wygrał 😢";
+      // ❌ NIE resetujemy już licznika
+    }
+
+    if (winStreak >= 3) {
+      setTimeout(() => alert("Wygrałeś 3 razy! 🎉"), 200);
+      gameActive = false;
+      document.querySelector("#butttonDiv").innerHTML = '<button id="submitBtn" onclick="continueToNext()">Przejdź dalej</button>';
+      
+    }
+
+    setTimeout(resetBoard, 1000);
+    gameActive = false;
+    return;
+  }
+
+  if (!board.includes("")) {
+    kolejDiv.innerText = "Remis!";
+
+    gameActive = false;
+  }
+}
+
+function computerMove() {
+  if (!gameActive) return;
+
+  let emptyCells = board
+    .map((val, index) => val === "" ? index : null)
+    .filter(val => val !== null);
+
+  // 🎲 los decyduje czy komputer gra mądrze
+  const smartMove = Math.random() < 0.9;
+
+  if (smartMove) {
+    // 1. Spróbuj wygrać
+    for (let i of emptyCells) {
+      board[i] = "O";
+      if (checkWin("O")) {
+        board[i] = "";
+        makeMove(i, "O");
+        return;
+      }
+      board[i] = "";
+    }
+
+    // 2. Zablokuj gracza
+    for (let i of emptyCells) {
+      board[i] = "X";
+      if (checkWin("X")) {
+        board[i] = "";
+        makeMove(i, "O");
+        return;
+      }
+      board[i] = "";
+    }
+  }
+
+  // 3. Losowy ruch (często się odpala)
+  const randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+  makeMove(randomIndex, "O");
+
+  if (gameActive) {
+    kolejDiv.innerText = "Twoja tura (X)";
+  }
+}
+
+function checkWin(player) {
+  return winConditions.some(condition => {
+    const [a, b, c] = condition;
+    return board[a] === player && board[b] === player && board[c] === player;
+  });
+}
+
+function resetBoard() {
+  board = ["", "", "", "", "", "", "", "", ""];
+  cells.forEach(cell => {
+    cell.innerText = "";
+    cell.classList.remove("x", "o");
+  });
+  gameActive = true;
+  kolejDiv.innerText = "Twoja tura (X)";
+}
+    </script>
+</body>

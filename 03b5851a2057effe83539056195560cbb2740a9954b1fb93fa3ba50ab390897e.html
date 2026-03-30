@@ -1,0 +1,148 @@
+<!--Stacja 5-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body data-site-id = "taskContent">
+    <div id="warp">
+        <div id="TaskName">Przejsc labirynt</div>
+        <div id="taskContent">
+            <div id="description">Nathanael (Bartłomiej) pierwszy raz usłyszał o Jezusie od Filipa, kiedy ten powiedział mu że znalazł tego, o którym pisali prorocy. Z początku Nathanael miał wątpliwości, ale kiedy spotkał Jezusa poszedł za nim i stał się jednym z apostołów. Bartłomiej wybrał drogę za Jezusem, a twoim zadaniem aby przejść tą stację będzie znalezienie drogi w labiryncie. Jeśli odnajdziesz drogę to dowiesz się gdzie zaczęła się droga św. Bartłomieja.</div>
+           <div id="mazeContainer">
+    <div id="mazeDesc">
+        <h1>Zasady Gry</h1>
+        <ol>
+            <li>Jesteś czerwonym kwadratem</li>
+            <li>Przejdź przez labirynt do celu (zielony kwadrat)</li>
+            <li>Użyj strzałek ⬅️➡️⬆️⬇️ albo przycisków dotykowych na telefonie</li>
+            <li>Dotknięcie ściany oznacza śmierć i powrót na start</li>
+            <li>Dotknięcie ruchomego obiektu też oznacza śmierć!</li>
+        </ol>
+    </div>
+    <div id="buttonDiv" style = "display: none;"><button id='submitBtn' onclick="continueToNext()">Przejdź dalej</button> </div>
+    <div id="maze"></div>
+    <div id="mazeControls">
+        <button id="up">⬆️</button><br>
+        <button id="left">⬅️</button>
+        <button id="down">⬇️</button>
+        <button id="right">➡️</button>
+    </div>
+    <div id="mazeInfo">Użyj strzałek lub przycisków aby przejść labirynt</div>
+  </div>
+
+
+
+<script>
+const mazeElement = document.getElementById("maze");
+
+const maze = [
+  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+  [1,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0],
+  [1,0,0,0,1,0,1,1,0,1,1,1,0,1,0,1,1,1,1,1,1,0,1,0,0],
+  [1,0,1,0,0,0,0,1,0,1,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0],
+  [1,0,1,1,1,1,0,1,0,1,1,1,0,1,0,0,0,0,0,0,1,1,0,1,0],
+  [1,0,0,0,0,1,0,1,0,1,0,0,0,1,1,1,1,1,1,0,1,1,0,1,0],
+  [1,1,1,1,0,1,0,1,0,1,0,1,1,1,0,0,0,0,0,0,1,1,0,1,1],
+  [1,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,1],
+  [1,0,0,0,0,1,0,0,0,1,0,1,1,1,0,0,0,0,0,1,0,0,0,0,1],
+  [1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1],
+  [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+];
+
+let player = { x: 1, y: 1 };
+const start = { x: 1, y: 1 };
+let end = { x: 23, y: 8 };
+
+// Trzy ruchome obiekty
+let movingObjects = [
+  { x: 16, y: 6, direction: 1, minRow: 6, maxRow: 8 },
+  { x: 14, y: 6, direction: 1, minRow: 6, maxRow: 8 },
+  { x: 18, y: 6, direction: 1, minRow: 6, maxRow: 8 }
+];
+
+
+function drawMaze() {
+  mazeElement.innerHTML = "";
+  for (let y = 0; y < maze.length; y++) {
+    for (let x = 0; x < maze[y].length; x++) {
+      const cell = document.createElement("div");
+      cell.classList.add("maze-cell");
+      if (maze[y][x] === 1) cell.classList.add("wall");
+      else cell.classList.add("path");
+
+      if (x === player.x && y === player.y) cell.classList.add("player");
+      if (x === end.x && y === end.y) cell.classList.add("end");
+      movingObjects.forEach(obj => {
+        if (x === obj.x && y === obj.y) cell.classList.add("moving-object");
+      });
+    
+
+      mazeElement.appendChild(cell);
+    }
+  }
+}
+
+function movePlayer(dx, dy) {
+  const newX = player.x + dx;
+  const newY = player.y + dy;
+
+  const hitObject = movingObjects.some(obj => obj.x === newX && obj.y === newY);
+
+  if (maze[newY][newX] === 1 || hitObject) {
+    alert("💀 Dotknąłeś ściany lub ruchomego obiektu! Powrót na start.");
+    player.x = start.x;
+    player.y = start.y;
+  } else {
+    player.x = newX;
+    player.y = newY;
+  }
+
+  if (player.x === end.x && player.y === end.y) {
+    setTimeout(() => alert("🎉 Udało się przejść labirynt!"), 100);
+    document.getElementById("buttonDiv").style.display = "block";
+    player.x = start.x;
+    player.y = start.y;
+  }
+
+  drawMaze();
+}
+let counter = 1;
+// Ruch obiektów co 2 sekundy
+setInterval(() => {
+  movingObjects.forEach(obj => {
+    obj.y += obj.direction;
+    if (obj.y >= obj.maxRow || obj.y <= obj.minRow) obj.direction *= -1;
+    if (player.x === obj.x && player.y === obj.y) {
+      player.x = start.x;
+      player.y = start.y;
+    }
+  });
+
+
+  drawMaze();
+}, 400);
+
+// Strzałki na desktopie
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowUp") movePlayer(0, -1);
+  if (e.key === "ArrowDown") movePlayer(0, 1);
+  if (e.key === "ArrowLeft") movePlayer(-1, 0);
+  if (e.key === "ArrowRight") movePlayer(1, 0);
+});
+
+// Przycisk dotykowy
+document.getElementById("up").addEventListener("click", () => movePlayer(0, -1));
+document.getElementById("down").addEventListener("click", () => movePlayer(0, 1));
+document.getElementById("left").addEventListener("click", () => movePlayer(-1, 0));
+document.getElementById("right").addEventListener("click", () => movePlayer(1, 0));
+
+drawMaze();
+</script>
+<script src="index.js" defer></script>
+
+
+</body>
