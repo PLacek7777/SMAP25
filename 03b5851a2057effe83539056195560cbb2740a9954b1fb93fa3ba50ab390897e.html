@@ -141,6 +141,15 @@ document.getElementById("left").addEventListener("click", () => movePlayer(-1, 0
 document.getElementById("right").addEventListener("click", () => movePlayer(1, 0));
 
 drawMaze();
+
+if(window.width < 600) {
+  {
+    document.querySelectorAll(".maze-cell").forEach(cell => {
+      cell.style.width = window.width/ 25 + "px";
+      cell.style.height = window.width / 25 + "px";
+    });
+  }
+}
 </script>
 <script src="index.js" defer></script>
 

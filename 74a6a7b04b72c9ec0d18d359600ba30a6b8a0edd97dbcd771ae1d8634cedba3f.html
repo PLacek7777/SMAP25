@@ -44,6 +44,8 @@
                     <li>Główna część zdania informuje o czynności, stanu lub zachowania podmiotu.</li>
                 </ol>
             </div>
+            <input id="mobileInput" type="text" maxlength="1"
+       style="opacity:0; position:absolute; left:-9999px;">
             <div id="wpiszHaslo">
                 <input type="text" id="hasloInput" placeholder="Wpisz hasło...">
                 <button id="submitBtn">Sprawdź</button>
@@ -111,7 +113,10 @@
                 td.className = "emptyCell";
                 td.style.backgroundColor = "lightblue";
             } else {
-                td.addEventListener('click', () => handleCellClick(td));
+                td.addEventListener('click', () => {
+    handleCellClick(td);
+    document.getElementById("mobileInput").focus();
+});
                 td.textContent = ""; // jeśli ma być puste na start
             }
             if (c ==  "8") {
@@ -129,14 +134,17 @@
     wordsearch.appendChild(table);
 }
         
-
-    function handleCellClick(td) {
+function handleCellClick(td) {
     if (selectedCell) {
         selectedCell.classList.remove('selected');
     }
 
     selectedCell = td;
     td.classList.add('selected');
+
+    // aktywacja klawiatury mobilnej
+    const input = document.getElementById("mobileInput");
+    input.focus();
 }
 
 // funkcja do przejścia do kolejnej "normalnej" komórki
@@ -180,7 +188,7 @@ function selectNextCell() {
 
         renderGrid();
 
-        
+        document.getElementById("mobileInput").value = "";
      
     
     document.addEventListener('keydown', (event) => {
@@ -205,8 +213,31 @@ function selectNextCell() {
         selectedCell.textContent = "";
         event.preventDefault();
     }
+    if (!selectedCell) return;
+
+    const letter = e.target.value;
+
+    if (letter.match(/[a-ząćęłńóśźż]/i)) {
+        selectedCell.textContent = letter.toUpperCase();
+        selectNextCell();
+    }
+
+    e.target.value = "";
+});
+document.getElementById("mobileInput").addEventListener("input", (e) => {
+    if (!selectedCell) return;
+
+    const letter = e.target.value;
+
+    if (letter.match(/[a-ząćęłńóśźż]/i)) {
+        selectedCell.textContent = letter.toUpperCase();
+        selectNextCell();
+    }
+
+    e.target.value = "";
 });
 })();
+
 </script>    
 
 </body>

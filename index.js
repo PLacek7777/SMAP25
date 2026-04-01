@@ -53,6 +53,7 @@ function continueToNext() {
     while(DoneTasks.includes(actualTaskNumber) || actualTaskNumber === undefined) {
       actualTaskNumber = Math.floor(Math.random() * 10); // losujemy 0–9
     }
+    actualTaskNumber = 2;
     localStorage.setItem("taskNumber", actualTaskNumber);
     DoneTasks.push(actualTaskNumber);
     localStorage.setItem("DoneTasks", JSON.stringify(DoneTasks));
