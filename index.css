@@ -13,6 +13,7 @@ body {
   background-color: #d2f8ffcd;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+  
 }
 
 #punkt {
@@ -318,85 +319,7 @@ img
   }
 
 }
-#gameBoard {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  flex-wrap: wrap;
-  width: 560px;
-  height: fit-content;
-}
-.cell
-{
-  width: 150px;
-  height: 150px;
-  margin: 0;
-}
-.cell:nth-child(1)
-{
-  border: 4px solid #0f4f7f;
-  border-left: none;
-  border-top: none;
-}
-.cell:nth-child(2)
-{
-  border-bottom: 4px solid #0f4f7f;
-}
-.cell:nth-child(3)
-{
-  border: 4px solid #0f4f7f;
-  border-right: none;
-  border-top: none;
-}
-.cell:nth-child(4)
-{
-  border: 4px solid #0f4f7f;
-  border-left: none;
-  border-top: none;
-}
-.cell:nth-child(5)
-{
-  border-bottom: #0f4f7f solid 4px;
-}
-.cell:nth-child(6)
-{
-  border: 4px solid #0f4f7f;
-  border-right: none;
-  border-top: none;
-}
-.cell:nth-child(7)
-{
-  border: 4px solid #0f4f7f;
-  border-left: none;
-  border-bottom: none;
-  border-top: none;
-}
-.cell:nth-child(9)
-{
-  border: 4px solid #0f4f7f;
-  border-right: none;
-  border-bottom: none;
-  border-top: none;
-}
-.cell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 42px;
-  font-weight: bold;
-}
 
-/* X = czerwony */
-.cell:has(:not(:empty)),
-.cell {
-  text-align: center;
-}
-
-/* konkretnie kolory */
-.cell {
-  color: black; /* fallback */
-}
 
 .cell:empty {
   color: black;
@@ -527,5 +450,50 @@ img
   #mazeDesc {
     font-size: 14px;
     padding: 0 10px;
+  }
+}
+/* =========================
+   TIC TAC TOE - ONLY BOARD FIX
+========================= */
+
+#gameBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  width: min(90vw, 420px);
+  aspect-ratio: 1 / 1;
+  margin: 20px auto;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(28px, 6vw, 42px);
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+}
+
+/* BORDERS (Twoja stylówka, tylko działa lepiej w gridzie) */
+.cell:nth-child(1) { border: 4px solid #0f4f7f; border-left: none; border-top: none; }
+.cell:nth-child(2) { border-bottom: 4px solid #0f4f7f; }
+.cell:nth-child(3) { border: 4px solid #0f4f7f; border-right: none; border-top: none; }
+
+.cell:nth-child(4) { border: 4px solid #0f4f7f; border-left: none; border-top: none; }
+.cell:nth-child(5) { border-bottom: 4px solid #0f4f7f; }
+.cell:nth-child(6) { border: 4px solid #0f4f7f; border-right: none; border-top: none; }
+
+.cell:nth-child(7) { border: 4px solid #0f4f7f; border-left: none; border-bottom: none; border-top: none; }
+.cell:nth-child(9) { border: 4px solid #0f4f7f; border-right: none; border-bottom: none; border-top: none; }
+
+/* X / O kolory */
+.cell.x { color: red; }
+.cell.o { color: green; }
+
+/* MOBILE ONLY FOR BOARD */
+@media (max-width: 600px) {
+  #gameBoard {
+    width: 95vw;
   }
 }
