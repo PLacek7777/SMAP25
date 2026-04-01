@@ -4,7 +4,7 @@
         "Name": "Stacja 1",
         "Characters":"Szymon Piotr i Andrzej", 
         "Password": "8034",
-        "Hint": "",
+        "Hint": "Tam gdzie cisza lubi gości,gdzie natura szepcze w kości,spójrz na słup, nie na ziemię —tam znajdziesz wskazówkę w cieniu.",
         "Task": "15e66171bb9efb190e598e1c95888b318d2a83951816b8f7294ca7ba16fdff8e.html"
     },
     {
@@ -12,7 +12,7 @@
         "Name": "Stacja 2",
         "Characters": "Jan",
         "Password": "3209",
-        "Hint": "",
+        "Hint": "Każdy tu zaczyna drogę,czytasz ją — i ruszasz w nogę,witacz stoi dumnie w bramie,tam kolejny znak zostanie.",
         "Task": "fb9e91ae25d59138d1541cee891d6d15fe17e8a92c5f148357e434bcd52585da.html"
     },
     {
@@ -20,7 +20,7 @@
         "Name":"Stacja 3",
         "Characters": "Paweł - Apostoł Narodów",
         "Password": "2049",
-        "Hint": "",
+        "Hint": "Gdzie koła świszczą, a wiatr gwiżdże,tam adrenalina nigdy nie zniknie,spójrz na rampę, może bok —tam ukryty kolejny krok.",
         "Task": "74a6a7b04b72c9ec0d18d359600ba30a6b8a0edd97dbcd771ae1d8634cedba3f.html"
     },
     {
@@ -28,7 +28,7 @@
         "Name":"Stacja 4",
         "Characters": "Nikodem",
         "Password": "6067",
-        "Hint": "",
+        "Hint": "Mały domek, choć bez drzwi,dziecięcych sekretów pilnie strzeże w nim,wejdź do środka, rozejrzyj się wkoło —kolejna wskazówka czeka tu wesoło.",
         "Task": "1cadfa40fb798d655cf1c497ce2056724f006784d3c7d8e80f565fb6bb454c3f.html"
     },
     {
@@ -36,7 +36,7 @@
         "Name":"Stacja 5",
         "Characters": "Bartłomiej",
         "Password": "9307",
-        "Hint": "",
+        "Hint": "Wieści stare, wieści nowe,ktoś je czyta — ktoś je chowa,między nimi coś się skrywa —twoja droga tam się zrywa.",
         "Task": "03b5851a2057effe83539056195560cbb2740a9954b1fb93fa3ba50ab390897e.html"
     },
     {
@@ -44,7 +44,7 @@
         "Name":"Stacja 6",
         "Characters": "Samarytanka",
         "Password": "2461",
-        "Hint": "",
+        "Hint": "Cisza, historia, kamień trwały,patrzy na świat trochę ospały,podejdź blisko, nie za szybko —tam znajdziesz wskazówkę skrytą.",
         "Task": "797b07d42cfe95acb878cf36ade6c9200d7e4f2042c53b759f5e4da00c4975f2.html"
     },
     {
@@ -52,7 +52,7 @@
         "Name":"Stacja 7",
         "Characters": "Niewidomy od urodzenia",
         "Password": "1290",
-        "Hint": "",
+        "Hint": "Trzy strażniki stoją w rzędzie,każdy milczy, lecz coś będzie,między nimi szukaj znaku —tam kolejny krok szlaku.",
         "Task": "3a75919cae03aae91d777d66e8e342dc0060c52209f2c1ab7a51880853455746.html"
     },
     {
@@ -60,7 +60,7 @@
         "Name":"Stacja 8",
         "Characters": "Marta, Maria, Zebedeusz",
         "Password": "8371",
-        "Hint": "",
+        "Hint": "Gdzie odpoczynek ma swój tron,a dach chroni przed każdą mgłą,usiądź, rozejrzyj się wokoło —coś tu czeka, całkiem wesoło.",
         "Task": "a7d29c9d01c06de16be288b6d2806a88d0048f5e3a2eee0d4ab1bbde16efe1db.html"
     },
     {
@@ -68,7 +68,7 @@
         "Name": "Stacja 9",
         "Characters": "Jan Chrzciciel",
         "Password": "2137",
-        "Hint": "",
+        "Hint": "Gdzie ścieżka pędzi jak wiatr szybki, tam znak stoi — cichy, gibki, spójrz dokładnie, nie przegap — tam ukryty kolejny etap.",
         "Task": "814e98f7c2e9780067aac4ee3eebbf121820044adb91b034f6f1266afd73e63d.html"
     },
     {
@@ -77,6 +77,6 @@
         "Characters": "Zacheusz",
         "Password": "6767",
         "Task": "c8eb7965e049583a4eaacc8561e05281d60a1719a36027c38381d338273ae1f2.html",
-        "Hint": ""
+        "Hint": "Śmiech dzieci niesie się daleko,tu zabawa płynie jak rzeka,wejdź do środka, spójrz pod ławkę — znajdziesz tam kolejną wskazówkę łatwą"
     }
 ]

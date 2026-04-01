@@ -18,12 +18,21 @@
   margin: 5px;
 }
 
+
 button:hover {
   background-color: #1b7540a8;
 }
  body{
   background-color: #f0fffe;
   font-family: sans-serif;
+}
+
+#wrap {
+  position: relative;
+}
+
+body {
+  touch-action: none; /* 🔥 blokuje scroll podczas drag */
 }
 
 #wrap {
@@ -120,12 +129,12 @@ function shuffle(array) {
 
 shuffle(pieces);
 
-// 🔲 tworzenie slotów
+// 🔲 sloty
 const slots = [];
 for (let i = 0; i < 20; i++) {
   const slot = document.createElement("div");
   slot.classList.add("puzzle-slot");
-  slot.dataset.index = i; 
+  slot.dataset.index = i;
   solvedPuzzle.appendChild(slot);
   slots.push(slot);
 }
@@ -134,7 +143,7 @@ let currentPiece = null;
 let offsetX = 0;
 let offsetY = 0;
 
-// 🧩 tworzenie puzzli
+// 🧩 puzzle
 pieces.forEach((src) => {
   const img = document.createElement('img');
   img.src = src;
@@ -152,8 +161,12 @@ function startDrag(e) {
 
   const event = e.touches ? e.touches[0] : e;
 
-  offsetX = event.offsetX || 50;
-  offsetY = event.offsetY || 50;
+  const rect = currentPiece.getBoundingClientRect();
+  offsetX = event.clientX - rect.left;
+  offsetY = event.clientY - rect.top;
+
+  currentPiece.style.position = "absolute";
+  currentPiece.style.zIndex = "1000";
 
   document.addEventListener("mousemove", move);
   document.addEventListener("mouseup", stop);
@@ -168,7 +181,6 @@ function move(e) {
 
   const event = e.touches ? e.touches[0] : e;
 
-  currentPiece.style.position = "absolute";
   currentPiece.style.left = (event.clientX - offsetX) + "px";
   currentPiece.style.top = (event.clientY - offsetY) + "px";
 }
@@ -210,18 +222,28 @@ function stop(e) {
     event.clientY >= boardRect.top &&
     event.clientY <= boardRect.bottom;
 
-  if (isInsideBoard && minDistance < 80) {
-    closestSlot.appendChild(currentPiece);
+  // 🔥 dopasowane do rozmiaru slotów
+  const snapDistance = window.innerWidth < 600 ? 30 : 50;
+
+  if (isInsideBoard && minDistance < snapDistance) {
+
+    // 🔒 tylko 1 element w slocie
+    if (closestSlot.children.length === 0) {
+      closestSlot.appendChild(currentPiece);
+    } else {
+      puzzleContainer.appendChild(currentPiece);
+    }
+
   } else {
     puzzleContainer.appendChild(currentPiece);
   }
 
   currentPiece.style.position = "static";
+  currentPiece.style.zIndex = "1";
   currentPiece = null;
 }
-}
 
-)();
+})();
 </script>
 
 </body>

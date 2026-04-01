@@ -9,6 +9,7 @@ let DoneTasks = [];
 // =======================
 if (siteId === "menu") {
   displayHelp();
+  localStorage.setItem("DoneTasks", JSON.stringify([]));
 }
 else if(siteId === "endScreen") {
   DoneTasks = JSON.parse(localStorage.getItem("DoneTasks")) ?? [];
