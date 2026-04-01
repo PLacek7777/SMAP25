@@ -12,7 +12,7 @@ body {
   padding: 20px;
   background-color: #d2f8ffcd;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0);
 }
 
 #punkt {
@@ -149,8 +149,8 @@ button:hover {
   padding: 8px;
 }
 
-#wrap {
-  overflow: visible;
+#btnShowHint {
+  margin: 20px 0;
 }
 
 iframe {
@@ -304,7 +304,13 @@ iframe {
     grid-template-columns: repeat(5, 40px);
     grid-template-rows: repeat(4, 40px);
   }
-
+#MorseCode  img{
+  width: 100%;
+}
+img
+{
+  width: 100%;
+}
   .puzzle-slot,
   .puzzle-piece {
     width: 40px;

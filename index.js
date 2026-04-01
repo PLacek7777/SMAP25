@@ -433,14 +433,9 @@ function checkStation4()
   }
 }
 function checkStation10()
-{
-  location.reload();
-  
-
-    alert('Brawo! Wykreślanka rozwiązana poprawnie. Możesz przejść dalej.');
+{  
     DoneTasks.push(actualTaskNumber);
     continueToNext();
 
-    alert(`Wykreślono ${foundCount}/${totalWords} słów. Kontynuuj szukanie i spróbuj ponownie.`);
   
 }

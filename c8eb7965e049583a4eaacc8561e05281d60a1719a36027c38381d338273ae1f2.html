@@ -9,7 +9,7 @@
     <script src="index.js" defer></script>
 </head>
 <body data-site-id = "taskContent">
-    <div id="warp">
+    <div id="wrap">
         <div id="TaskName">Wygraj w Kółko i krzyżyk</div>
         <div id="taskContent">
             <div id="description">Dawno temu, w pewnym mieście, mieszkał człowiek o imieniu Zacheusz. Był bardzo bogaty, ale ludzie go nie lubili, bo zabierał im pieniądze jako poborca podatków. Mimo to w jego sercu było pragnienie czegoś więcej - chciał zobaczyć Jezusa.
@@ -93,7 +93,7 @@ function makeMove(index, player) {
     if (winStreak >= 3) {
       setTimeout(() => alert("Wygrałeś 3 razy! 🎉"), 200);
       gameActive = false;
-      document.querySelector("#butttonDiv").innerHTML = '<button id="submitBtn" onclick="continueToNext()">Przejdź dalej</button>';
+      document.querySelector("#butttonDiv").innerHTML = '<button id="submitBtn" onclick="window.parent.continueToNext()">Przejdź dalej</button>';
       
     }
 
@@ -104,8 +104,8 @@ function makeMove(index, player) {
 
   if (!board.includes("")) {
     kolejDiv.innerText = "Remis!";
-
     gameActive = false;
+    setTimeout(resetBoard, 1000);
   }
 }
 
