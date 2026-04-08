@@ -91,7 +91,21 @@ function showHint() {
       if (!hintDiv || !btn) return;
 
       btn.innerHTML = "";
-      hintDiv.innerHTML = "<h3 style='text-align:center'>Podpowiedź:</h3>" + data[actualTaskNumber].Hint;
+
+      hintDiv.innerHTML = `
+        <h3 style="text-align:center">Podpowiedź:</h3>
+        ${data[actualTaskNumber].Hint}
+        <div style="
+          height: 200px;
+          width: 300px;
+          background-image: url('${data[actualTaskNumber].Img}');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          margin-left:auto;
+          margin-right:auto;
+        "></div>
+      `;
 
       const passDiv = document.getElementById("showPassDiv");
       const loginBtn = document.getElementById("loginbtn");
@@ -315,7 +329,7 @@ function checkStation7() {
   const q1 = doc.querySelector('input[name="question1"]:checked')?.value;
   const q2 = doc.querySelector('input[name="question2"]:checked')?.value;
 
-  if (q1 === 'b' && q2 === 'c') {
+  if (q1 === 'b' && q2 === 'a') {
     alert('Poprawna odpowiedź! Możesz przejść dalej.');
     DoneTasks.push(actualTaskNumber);
     continueToNext();

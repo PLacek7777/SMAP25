@@ -13,4 +13,13 @@
     </div>
     <div id="WykonaneZadania">Wykonane Zadania:</div>
 </body>
+<script>
+let doneTasksList = document.getElementById("WykonaneZadania");
+let doneTasks = JSON.parse(localStorage.getItem("DoneTasks")) || [];
+doneTasks.sort((a, b) => a - b);
+doneTasks.forEach(element => {
+    doneTasksList.innerHTML += `<p>Stacja ${element + 1}</p>`;
+});
+
+</script>
 </html>

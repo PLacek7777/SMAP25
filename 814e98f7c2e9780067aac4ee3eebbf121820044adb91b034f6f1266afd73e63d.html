@@ -14,14 +14,13 @@
         <div id="taskContent">
             <div id="description">Jednym z pierwszych przyjaciół Jezusa Chrystusa był Jan Chrzciciel - ostatni prorok Starego Testamentu. Jan zasłynął z tego że chrzcił ludzi i wzywał ich do nawrócenia. Żeby poznać go bliżej znajdźcie i wykreślcie 8 słów opisujących go. Ogromną pomocą będzie dla was 3 rozdział Ewangelii według św. Mateusza.</div>
             <div id="wordsearchInfo">
+
+                <h4>Aby zaznaczyć słowo kliknij na pierwszą literę, a następnie na ostatnią.</h4>
                 <p>(Hasła mogą być umieszczone w dowolnym kierunku)  Znalezione <span id="foundCount">0</span>/<span id="totalWords">8</span> słów</p>
                 <p id="puzzleFeedback" style="color:#de5500;font-weight:bold;"></p>
             </div>
             <div id="wordsearch"></div>
             <div id="wordListContainer">
-                <strong>Słowa do znalezienia:</strong>
-                <ul id="wordList"></ul>
-            </div>
             <div id="wordsearchControls" style="text-align:center; margin-top: 10px;">
                 <button id="clearSelection">Wyczyść wybór</button>
                 <button id="submitBtn">Zatwierdź</button>
@@ -56,10 +55,9 @@
 ['O','R','P','R','O','P','R','O','A','M','P','L'],
 ['W','O','D','A','L','A','M','P','A','R','O','K']
 ];
-
             const wordsearch = document.getElementById('wordsearch');
-            const wordList = document.getElementById('wordList');
             const foundCountEl = document.getElementById('foundCount');
+            const wordListEl = document.getElementById('wordList');
             const totalWordsEl = document.getElementById('totalWords');
             const puzzleFeedback = document.getElementById('puzzleFeedback');
             const clearBtn = document.getElementById('clearSelection');
@@ -73,7 +71,6 @@
                 const li = document.createElement('li');
                 li.id = 'word-' + word;
                 li.textContent = word;
-                wordList.appendChild(li);
             });
 
             function renderGrid() {
@@ -176,6 +173,7 @@
                         markWord(foundWord);
                         foundCountEl.innerText = foundWords.size;
                         puzzleFeedback.textContent = `Znakomicie! Znaleziono: ${foundWord}`;
+                        
                     }
                 } else {
                     puzzleFeedback.textContent = `To nie jest poprawne słowo (${word}). Spróbuj jeszcze raz.`;
@@ -187,7 +185,6 @@
             }
 
             clearBtn.addEventListener('click', resetSelection);
-
             renderGrid();
         })();
     </script>
