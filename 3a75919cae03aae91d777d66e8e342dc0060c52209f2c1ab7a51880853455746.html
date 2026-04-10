@@ -8,14 +8,17 @@
     <link rel="stylesheet" href="index.css">
     <script src="index.js" defer></script>
 </head>
-<body data-site-id = "taskContent">
+<body data-site-id="taskContent">
     <div id="warp">
-        <div id="TaskName">Rozwiaż Quiz</div>
+        <div id="TaskName">Rozwiąż Quiz</div>
         <div id="taskContent">
-            <div id="description">w IV niedzielę Wielkiego Postu słyszeliśmy historię niewidomego od urodzenia, która nie jest tylko opowieścią o cudzie, ale też zaproszeniem do głębszego spojrzenia. Jezus spotyka człowieka, który nigdy nie widział świata, i przywraca mu wzrok, pokazując, że prawdziwe światło pochodzi od Boga. Jednak nie wszyscy potrafili to zrozumieć – faryzeusze widzą cud, ale nie dostrzegają jego znaczenia. Niewidomy natomiast, choć wcześniej nie widział nic, zaczyna widzieć coraz więcej. Nie tylko oczami, ale i sercem. Teraz i wy stoicie przed wyborem. Aby ruszyć dalej odpowiedzcie na pytania:</div>
+            <div id="description">
+                w IV niedzielę Wielkiego Postu słyszeliśmy historię niewidomego od urodzenia...
+            </div>
+
             <div id="questions">
-                <ol class = "questionsList">
-                    
+                <ol class="questionsList">
+
                     <li>
                         Co było najważniejszym znakiem w tej historii?
                         <div>
@@ -31,6 +34,7 @@
                             <label for="q1c">Reakcja tłumu</label>
                         </div>
                     </li>
+
                     <li>
                         Kto zrozumiał znaczenie cudu?
                         <div>
@@ -46,10 +50,56 @@
                             <label for="q2c">Faryzeusze</label>
                         </div>
                     </li>
+
+                    <!-- NOWE PYTANIA -->
+
+                    <li>
+                        Kim był człowiek uzdrowiony przez Jezusa?
+                        <div>
+                            <input type="radio" name="question3" value="a"> Niewidomy od urodzenia
+                        </div>
+                        <div>
+                            <input type="radio" name="question3" value="b"> Chory na nogi
+                        </div>
+                        <div>
+                            <input type="radio" name="question3" value="c"> Głuchy
+                        </div>
+                    </li>
+
+                    <li>
+                        Co symbolizuje światło w tej historii?
+                        <div>
+                            <input type="radio" name="question4" value="a"> Wiedzę szkolną
+                        </div>
+                        <div>
+                            <input type="radio" name="question4" value="b"> Obecność Boga i prawdę
+                        </div>
+                        <div>
+                            <input type="radio" name="question4" value="c"> Dzień i noc
+                        </div>
+                    </li>
+
+                    <li>
+                        Dlaczego faryzeusze nie uwierzyli?
+                        <div>
+                            <input type="radio" name="question5" value="a"> Bali się
+                        </div>
+                        <div>
+                            <input type="radio" name="question5" value="b"> Nie widzieli cudu
+                        </div>
+                        <div>
+                            <input type="radio" name="question5" value="c"> Byli zamknięci na prawdę
+                        </div>
+                    </li>
+
                 </ol>
-                <div  style="text-align: center;">
-                <button id="submitBtn">Zatwierdź odpowiedzi</button>
+
+                <div style="text-align: center;">
+                    <button id="submitBtn">Zatwierdź odpowiedzi</button>
                 </div>
+
+                <div id="result" style="text-align:center; margin-top:20px;"></div>
+
             </div>
         </div>
     </div>

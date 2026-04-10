@@ -10,15 +10,17 @@
 </head>
 <body data-site-id = "taskContent">
     <div id="warp">
-        <div id="TaskName">Rozwiaż Quiz</div>
+        <div id="TaskName">Rozwiąż Quiz</div>
         <div id="taskContent">
-            <div id="description">Historia Samarytanki pokazuje, że nie trzeba być kimś wyjątkowym, aby spotkać Boga. Jezus Chrystus rozmawia z kobietą przy studni, choć Żydzi zwykle unikali Samarytan, i objawia jej, że jest Mesjaszem. Mówi jej także o „wodzie żywej”, która daje życie wieczne i prawdziwe spełnienie. Samarytanka zaczyna rozumieć coraz więcej i dostrzega, kim naprawdę jest Jezus. Zostawia swój dzban i biegnie do miasta, aby opowiedzieć innym o tym spotkaniu. Dzięki jej świadectwu wielu ludzi uwierzyło w Jezusa i sami chcieli Go poznać. Ta historia uczy, że każdy może spotkać Jezusa i dzielić się nim z innymi.</div>
+            <div id="description">
+                Historia Samarytanki pokazuje...
+            </div>
+
             <div id="questions">
-                <ol class = "questionsList">
+                <ol class="questionsList">
                     
                     <li>
                         Kogo spotkała Samarytanka przy studni?
-
                         <div>
                             <input type="radio" id="q1a" name="question1" value="a">
                             <label for="q1a">Ucznia</label>
@@ -32,6 +34,7 @@
                             <label for="q1c">Faryzeusza</label>
                         </div>
                     </li>
+
                     <li>
                        Co zrobiła Samarytanka po rozmowie z Jezusem?
                         <div>
@@ -47,9 +50,65 @@
                             <label for="q2c">Powiedziała innym o Jezusie</label>
                         </div>
                     </li>
+
+                    <!-- NOWE PYTANIA -->
+
+                    <li>
+                        Co Jezus obiecał Samarytance?
+                        <div>
+                            <input type="radio" name="question3" value="a"> Bogactwo
+                        </div>
+                        <div>
+                            <input type="radio" name="question3" value="b"> Wodę żywą
+                        </div>
+                        <div>
+                            <input type="radio" name="question3" value="c"> Nowy dom
+                        </div>
+                    </li>
+
+                    <li>
+                        Dlaczego rozmowa Jezusa z Samarytanką była niezwykła?
+                        <div>
+                            <input type="radio" name="question4" value="a"> Bo się znali wcześniej
+                        </div>
+                        <div>
+                            <input type="radio" name="question4" value="b"> Bo Żydzi unikali Samarytan
+                        </div>
+                        <div>
+                            <input type="radio" name="question4" value="c"> Bo była noc
+                        </div>
+                    </li>
+
+                    <li>
+                        Co zostawiła Samarytanka przy studni?
+                        <div>
+                            <input type="radio" name="question5" value="a"> Dzban
+                        </div>
+                        <div>
+                            <input type="radio" name="question5" value="b"> Pieniądze
+                        </div>
+                        <div>
+                            <input type="radio" name="question5" value="c"> Ubranie
+                        </div>
+                    </li>
+
+                    <li>
+                        Co się stało dzięki świadectwu Samarytanki?
+                        <div>
+                            <input type="radio" name="question6" value="a"> Nikt jej nie uwierzył
+                        </div>
+                        <div>
+                            <input type="radio" name="question6" value="b"> Ludzie uwierzyli w Jezusa
+                        </div>
+                        <div>
+                            <input type="radio" name="question6" value="c"> Została odrzucona
+                        </div>
+                    </li>
+
                 </ol>
-                <div  style="text-align: center;">
-                <button id="submitBtn">Zatwierdź odpowiedzi</button>
+
+                <div style="text-align: center;">
+                    <button id="submitBtn">Zatwierdź odpowiedzi</button>
                 </div>
             </div>
         </div>

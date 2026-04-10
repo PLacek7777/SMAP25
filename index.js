@@ -310,8 +310,12 @@ function checkStation6() {
   const doc = iframe.contentWindow.document;
   const q1 = doc.querySelector('input[name="question1"]:checked')?.value;
   const q2 = doc.querySelector('input[name="question2"]:checked')?.value;
+  const q3 = doc.querySelector('input[name="question3"]:checked')?.value;
+  const q4 = doc.querySelector('input[name="question4"]:checked')?.value;
+  const q5 = doc.querySelector('input[name="question5"]:checked')?.value;
+  const q6 = doc.querySelector('input[name="question6"]:checked')?.value;
 
-  if (q1 === 'b' && q2 === 'c') {
+  if (q1 === 'b' && q2 === 'c' && q3 == 'b' && q4 === 'b' && q5 === 'a' && q6 === 'b') {
     alert('Poprawna odpowiedź! Możesz przejść dalej.');
     DoneTasks.push(actualTaskNumber);
     continueToNext();
@@ -328,8 +332,11 @@ function checkStation7() {
   const doc = iframe.contentWindow.document;
   const q1 = doc.querySelector('input[name="question1"]:checked')?.value;
   const q2 = doc.querySelector('input[name="question2"]:checked')?.value;
+  const q3 = doc.querySelector('input[name="question3"]:checked')?.value;
+  const q4 = doc.querySelector('input[name="question4"]:checked')?.value;
+  const q5 = doc.querySelector('input[name="question5"]:checked')?.value;
 
-  if (q1 === 'b' && q2 === 'a') {
+  if (q1 === 'b' && q2 === 'a' && q3 == 'a' && q4 === 'b' && q5 === 'c') {
     alert('Poprawna odpowiedź! Możesz przejść dalej.');
     DoneTasks.push(actualTaskNumber);
     continueToNext();
